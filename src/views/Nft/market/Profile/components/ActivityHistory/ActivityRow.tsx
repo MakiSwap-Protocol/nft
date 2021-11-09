@@ -1,10 +1,10 @@
 import React from 'react'
-import { Image, Flex, Text, Td, IconButton, Link, OpenNewIcon, useMatchBreakpoints, useModal } from '@pancakeswap/uikit'
+import { Image, Flex, Text, Td, IconButton, Link, OpenNewIcon, useMatchBreakpoints, useModal } from 'maki-toolkit'
 import { NftToken } from 'state/nftMarket/types'
-import { Price } from '@pancakeswap/sdk'
+import { Price } from 'maki-sdk'
 import styled from 'styled-components'
-import { getBscScanLink } from 'utils'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { getEtherscanLink } from 'utils'
+import { useActiveWeb3React } from 'hooks'
 import ProfileCell from 'views/Nft/market/components/ProfileCell'
 import { Activity } from '../../utils/sortUserActivity'
 import ActivityEventText from './ActivityEventText'
@@ -88,7 +88,7 @@ const ActivityRow: React.FC<ActivityRowProps> = ({ activity, bnbBusdPrice, nft }
       </Td>
       {isXs || isSm ? null : (
         <Td>
-          <IconButton as={Link} external href={getBscScanLink(activity.tx, 'transaction', chainId)}>
+          <IconButton as={Link} external href={getEtherscanLink(activity.tx, 'transaction', chainId)}>
             <OpenNewIcon color="textSubtle" width="18px" />
           </IconButton>
         </Td>

@@ -4,16 +4,15 @@ import {
   Flex,
   Card,
   Grid,
-  SellIcon,
   Text,
   ArrowBackIcon,
   ArrowForwardIcon,
   useMatchBreakpoints,
-  ArrowUpIcon,
   ArrowDownIcon,
   Button,
   Spinner,
-} from '@pancakeswap/uikit'
+} from 'maki-toolkit'
+import { SellIcon, ArrowUpIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Box, Text, Button } from '@pancakeswap/uikit'
+import { Flex, Box, Text, Button } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import { Divider } from '../shared/styles'
 

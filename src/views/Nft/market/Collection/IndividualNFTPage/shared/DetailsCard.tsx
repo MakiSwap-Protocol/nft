@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Flex, Text, SearchIcon, Link } from '@pancakeswap/uikit'
-import { getBscScanLink } from 'utils'
+import { Box, Flex, Text, SearchIcon, Link } from 'maki-toolkit'
+import { getEtherscanLink } from 'utils'
 import { formatNumber } from 'utils/formatBalance'
 import uriToHttp from 'utils/uriToHttp'
 import { useTranslation } from 'contexts/Localization'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useActiveWeb3React } from 'hooks'
 import ExpandableCard from './ExpandableCard'
 
 interface DetailsCardProps {
@@ -32,7 +32,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ contractAddress, ipfsJson, co
         <Text fontSize="12px" color="textSubtle" bold textTransform="uppercase">
           {t('Contract address')}
         </Text>
-        <Link external href={getBscScanLink(contractAddress, 'address', chainId)}>
+        <Link external href={getEtherscanLink(contractAddress, 'address', chainId)}>
           <LongTextContainer bold>{contractAddress}</LongTextContainer>
         </Link>
       </Flex>

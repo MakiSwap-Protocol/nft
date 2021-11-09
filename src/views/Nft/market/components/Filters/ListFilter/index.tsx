@@ -11,9 +11,9 @@ import {
   SearchIcon,
   IconButton,
   CloseIcon,
-  ArrowUpIcon,
   ArrowDownIcon,
-} from '@pancakeswap/uikit'
+} from 'maki-toolkit'
+import { ArrowUpIcon } from 'components/Svg'
 import orderBy from 'lodash/orderBy'
 import { useAppDispatch } from 'state'
 import { filterNftsFromCollection } from 'state/nftMarket/reducer'

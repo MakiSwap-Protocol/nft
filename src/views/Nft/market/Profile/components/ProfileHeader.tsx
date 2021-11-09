@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { BscScanIcon, Flex, IconButton, Link, Button, useModal } from '@pancakeswap/uikit'
+import { BscScanIcon, Flex, IconButton, Link, Button, useModal } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
-import { getBscScanLink } from 'utils'
+import { getEtherscanLink } from 'utils'
 import { formatNumber } from 'utils/formatBalance'
 import truncateHash from 'utils/truncateHash'
 import { Achievement, Profile } from 'state/types'
@@ -80,7 +80,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
             <StyledIconButton
               target="_blank"
               as="a"
-              href={getBscScanLink(accountPath, 'address')}
+              href={getEtherscanLink(accountPath, 'address')}
               alt={t('View BscScan for user address')}
             >
               <BscScanIcon width="20px" color="primary" />
@@ -140,7 +140,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
     return (
       <Flex flexDirection="column" mb={[16, null, 0]} mr={[0, null, 16]}>
         {accountPath && profile?.username && (
-          <Link href={getBscScanLink(accountPath, 'address')} external bold color="primary">
+          <Link href={getEtherscanLink(accountPath, 'address')} external bold color="primary">
             {truncateHash(accountPath)}
           </Link>
         )}

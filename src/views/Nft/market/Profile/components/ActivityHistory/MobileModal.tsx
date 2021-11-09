@@ -1,6 +1,6 @@
 import React from 'react'
-import { InjectedModalProps, Modal, Flex, Text, Button, Image, Link, BinanceIcon } from '@pancakeswap/uikit'
-import { Price } from '@pancakeswap/sdk'
+import { InjectedModalProps, Modal, Flex, Text, Button, Image, Link, BinanceIcon } from 'maki-toolkit'
+import { Price } from 'maki-sdk'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'
 import { NftToken } from 'state/nftMarket/types'
@@ -9,7 +9,7 @@ import { useTranslation } from 'contexts/Localization'
 import truncateHash from 'utils/truncateHash'
 import { multiplyPriceByAmount } from 'utils/prices'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import { getBscScanLink } from 'utils'
+import { getEtherscanLink } from 'utils'
 import { Activity } from '../../utils/sortUserActivity'
 import ActivityEventText from './ActivityEventText'
 
@@ -79,7 +79,7 @@ const MobileModal: React.FC<MobileModalProps> = ({ nft, activity, bnbBusdPrice, 
           </Flex>
         </LightGreyCard>
         <Flex flexDirection="column" pt="16px" alignItems="center">
-          <Button as={Link} external href={getBscScanLink(activity.tx, 'transaction', chainId)}>
+          <Button as={Link} external href={getEtherscanLink(activity.tx, 'transaction', chainId)}>
             {t('View on BscScan')}
           </Button>
         </Flex>
