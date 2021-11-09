@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import PageHeader from 'components/PageHeader'
 import SectionsWithFoldableText from 'components/FoldableSection/SectionsWithFoldableText'
-import PageSection from 'components/PageSection'
-import { PageMeta } from 'components/Layout/Page'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
 import useTheme from 'hooks/useTheme'
 import SearchBar from '../components/SearchBar'
@@ -18,6 +16,8 @@ import config from './config'
 const Gradient = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.cardHeader};
 `
+
+const PageSection = styled.div``
 
 const StyledPageHeader = styled(PageHeader)`
   margin-bottom: -40px;
@@ -56,7 +56,6 @@ const Home = () => {
 
   return (
     <>
-      <PageMeta />
       <StyledPageHeader>
         <StyledHeaderInner>
           <div>
@@ -75,13 +74,7 @@ const Home = () => {
           <SearchBar />
         </StyledHeaderInner>
       </StyledPageHeader>
-      <PageSection
-        innerProps={{ style: { margin: '0', width: '100%' } }}
-        background={theme.colors.background}
-        index={1}
-        concaveDivider
-        dividerPosition="top"
-      >
+      <PageSection>
         <Collections />
         <Newest />
       </PageSection>
