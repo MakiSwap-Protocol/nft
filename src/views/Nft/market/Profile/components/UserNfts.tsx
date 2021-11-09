@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, useModal, Text, Flex } from 'maki-toolkit'
+import styled from 'styled-components'
+import { useModal, Text, Flex } from 'maki-toolkit'
 import { useUserNfts } from 'state/nftMarket/hooks'
 import { NftLocation, UserNftInitializationState, NftToken } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'
@@ -19,6 +20,13 @@ interface SellNftProps {
   location: NftLocation
   variant: 'sell' | 'edit'
 }
+
+const Grid = styled.div`
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr repeat(2, 1fr) repeat(3, 1fr) null repeat(4, 1fr);
+  grid-gap: 16px;
+`
 
 const UserNfts = () => {
   const { nfts, userNftsInitializationState } = useUserNfts()
@@ -72,11 +80,7 @@ const UserNfts = () => {
         </Flex>
       ) : // User has NFTs and data has been fetched
       nfts.length > 0 ? (
-        <Grid
-          gridGap="16px"
-          gridTemplateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
-          alignItems="start"
-        >
+        <Grid>
           {nfts.map((nft) => {
             const { marketData, location } = nft
 

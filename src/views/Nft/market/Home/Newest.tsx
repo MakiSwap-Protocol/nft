@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Heading, Flex, Button, Grid, ChevronRightIcon } from 'maki-toolkit'
+import styled from 'styled-components'
+import { Heading, Flex, Button, ChevronRightIcon } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import { Link } from 'react-router-dom'
 import { NftToken } from 'state/nftMarket/types'
@@ -7,6 +8,14 @@ import { getLatestListedNfts, getNftsFromDifferentCollectionsApi } from 'state/n
 import { nftsBaseUrl, pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { CollectibleLinkCard } from '../components/CollectibleCard'
 import GridPlaceholder from '../components/GridPlaceholder'
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 1fr) repeat(2, 1fr) repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
+  grid-row-gap: 24px;
+  grid-column-gap: 16px;
+`
 
 /**
  * Fetch latest NFTs data from SG+API and combine them
@@ -53,11 +62,7 @@ const Newest: React.FC = () => {
         </Button>
       </Flex>
       {nfts ? (
-        <Grid
-          gridRowGap="24px"
-          gridColumnGap="16px"
-          gridTemplateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(2, 1fr)', 'repeat(4, 1fr)']}
-        >
+        <Grid>
           {nfts.map((nft) => {
             const isPBCollection = nft.collectionAddress.toLowerCase() === pancakeBunniesAddress.toLowerCase()
             const currentAskPrice =

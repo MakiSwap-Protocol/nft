@@ -1,10 +1,15 @@
 import React from 'react'
-import { Flex, Grid, Text, Button, Link, LinkExternal, BinanceIcon } from 'maki-toolkit'
+import styled from 'styled-components'
+import { Flex, Text, Button, Link, LinkExternal, BinanceIcon } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import { nftsBaseUrl, pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { NftToken } from 'state/nftMarket/types'
 import { getBscScanLinkForNft } from 'utils'
 import { Divider, HorizontalDivider, RoundedImage } from '../shared/styles'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 interface EditStageProps {
   nftToSell: NftToken
@@ -30,7 +35,11 @@ const EditStage: React.FC<EditStageProps> = ({
     <>
       <Flex p="16px">
         <RoundedImage src={nftToSell.image.thumbnail} height={68} width={68} mr="8px" />
-        <Grid flex="1" gridTemplateColumns="1fr 1fr" alignItems="center">
+        <Grid
+          // flex="1"
+          // gridTemplateColumns="1fr 1fr"
+          // alignItems="center"
+        >
           <Text bold>{nftToSell.name}</Text>
           <Text fontSize="12px" color="textSubtle" textAlign="right">
             {nftToSell.collectionName}

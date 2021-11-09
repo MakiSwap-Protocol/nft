@@ -62,6 +62,7 @@
     "date-fns": "^2.17.0",
     "dayjs": "^1.10.7",
     "ethers": "^5.3.1",
+    "graphql-request": "^3.6.1",
     "jazzicon": "^1.5.0",
     "js-cookie": "^2.2.1",
     "lightweight-charts": "^3.6.1",

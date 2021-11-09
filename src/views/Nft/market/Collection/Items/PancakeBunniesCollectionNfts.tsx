@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid } from 'maki-toolkit'
+import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
 import { Collection } from 'state/nftMarket/types'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'
@@ -10,6 +10,13 @@ interface CollectionNftsProps {
   collection: Collection
   sortBy?: string
 }
+
+const Grid = styled.div`
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr, null, repeat(3, 1fr), null, repeat(4, 1fr);
+  grid-gap: 16px;
+`
 
 const PancakeBunniesCollectionNfts: React.FC<CollectionNftsProps> = ({ collection, sortBy = 'updatedAt' }) => {
   const { address } = collection
@@ -27,11 +34,7 @@ const PancakeBunniesCollectionNfts: React.FC<CollectionNftsProps> = ({ collectio
 
   return (
     <>
-      <Grid
-        gridGap="16px"
-        gridTemplateColumns={['1fr', null, 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
-        alignItems="start"
-      >
+      <Grid>
         {sortedNfts.map((nft) => {
           return <CollectibleLinkCard key={`${nft.tokenId}-${nft.collectionName}`} nft={nft} />
         })}

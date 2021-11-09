@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Box, ButtonMenu, ButtonMenuItem, Flex, Grid, Text } from 'maki-toolkit'
+import { Box, ButtonMenu, ButtonMenuItem, Flex, Text } from 'maki-toolkit'
 import capitalize from 'lodash/capitalize'
 import isEmpty from 'lodash/isEmpty'
 import { useGetNftFilters, useGetNftShowOnlyOnSale } from 'state/nftMarket/hooks'
@@ -16,6 +16,10 @@ import SortSelect from './SortSelect'
 interface FiltersProps {
   collection: Collection
 }
+
+const Grid = styled.div`
+  display: grid;
+`
 
 const GridContainer = styled(Grid)`
   margin-bottom: 16px;

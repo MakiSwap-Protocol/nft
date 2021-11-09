@@ -1,11 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  Table,
-  Th,
-  Td,
   Card,
   Flex,
-  BnbUsdtPairTokenIcon,
   Heading,
   useMatchBreakpoints,
   ProfileAvatar,
@@ -13,6 +9,7 @@ import {
   Text,
   ArrowForwardIcon,
 } from 'maki-toolkit'
+import { BnbUsdtPairTokenIcon } from 'components/Svg'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useGetCollections } from 'state/nftMarket/hooks'
@@ -104,30 +101,30 @@ const Collectible = () => {
       </PageHeader>
       <Page>
         <Card>
-          <Table>
+          <table>
             <thead>
               <tr>
-                <Th textAlign="left">{t('Collection')}</Th>
-                <Th textAlign="left" style={{ cursor: 'pointer' }} onClick={() => handleSort(SORT_FIELD.volumeBNB)}>
+                <th style={{ textAlign: 'left' }}>{t('Collection')}</th>
+                <th style={{ textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort(SORT_FIELD.volumeBNB)}>
                   {t('Volume')}
                   {arrow(SORT_FIELD.volumeBNB)}
-                </Th>
+                </th>
                 {!isMobile && (
                   <>
-                    <Th textAlign="left" style={{ cursor: 'pointer' }} onClick={() => handleSort(SORT_FIELD.items)}>
+                    <th style={{ textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort(SORT_FIELD.items)}>
                       {t('Items')}
                       {arrow(SORT_FIELD.items)}
-                    </Th>
-                    <Th textAlign="left" style={{ cursor: 'pointer' }} onClick={() => handleSort(SORT_FIELD.supply)}>
+                    </th>
+                    <th style={{ textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort(SORT_FIELD.supply)}>
                       {t('Supply')}
                       {arrow(SORT_FIELD.supply)}
-                    </Th>
+                    </th>
                   </>
                 )}
               </tr>
             </thead>
             <tbody>
-              {sortedCollections.map((collection) => {
+              {sortedCollections.map((collection: any) => {
                 const volume = collection.totalVolumeBNB
                   ? parseFloat(collection.totalVolumeBNB).toLocaleString(undefined, {
                       minimumFractionDigits: 3,
@@ -136,31 +133,31 @@ const Collectible = () => {
                   : '0'
                 return (
                   <tr key={collection.address}>
-                    <Td>
+                    <td>
                       <Link to={`${nftsBaseUrl}/collections/${collection.address}`}>
                         <Flex alignItems="center">
                           <ProfileAvatar src={collection.avatar} width={48} height={48} mr="16px" />
                           {collection.name}
                         </Flex>
                       </Link>
-                    </Td>
-                    <Td>
+                    </td>
+                    <td>
                       <Flex alignItems="center">
                         {volume}
                         <BnbUsdtPairTokenIcon ml="8px" />
                       </Flex>
-                    </Td>
+                    </td>
                     {!isMobile && (
                       <>
-                        <Td>{collection.numberTokensListed}</Td>
-                        <Td>{collection.totalSupply}</Td>
+                        <td>{collection.numberTokensListed}</td>
+                        <td>{collection.totalSupply}</td>
                       </>
                     )}
                   </tr>
                 )
               })}
             </tbody>
-          </Table>
+          </table>
           <PageButtons>
             <Arrow
               onClick={() => {

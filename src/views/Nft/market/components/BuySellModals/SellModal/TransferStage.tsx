@@ -1,10 +1,15 @@
 import React from 'react'
-import { Flex, Grid, Text, Button, Input, BinanceIcon, ErrorIcon } from 'maki-toolkit'
+import styled from 'styled-components'
+import { Flex, Text, Button, Input, BinanceIcon, ErrorIcon } from 'maki-toolkit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { NftToken } from 'state/nftMarket/types'
 import { Divider, RoundedImage } from '../shared/styles'
 import { GreyedOutContainer } from './styles'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 interface TransferStageProps {
   nftToSell: NftToken
@@ -42,7 +47,11 @@ const TransferStage: React.FC<TransferStageProps> = ({
       </Text>
       <Flex p="16px">
         <RoundedImage src={nftToSell.image.thumbnail} height={68} width={68} mr="8px" />
-        <Grid flex="1" gridTemplateColumns="1fr 1fr" alignItems="center">
+        <Grid
+          // flex="1"
+          // gridTemplateColumns="1fr 1fr"
+          // alignItems="center"
+        >
           <Text bold>{nftToSell.name}</Text>
           <Text fontSize="12px" color="textSubtle" textAlign="right">
             {nftToSell.collectionName}

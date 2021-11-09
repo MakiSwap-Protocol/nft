@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import styled from 'styled-components'
 import uniqBy from 'lodash/uniqBy'
-import { AutoRenewIcon, Button, Flex, Grid, Text } from 'maki-toolkit'
+import { AutoRenewIcon, Button, Flex, Text } from 'maki-toolkit'
 import { useAppDispatch } from 'state'
 import {
   useGetNftFilterLoadingState,
@@ -15,6 +16,10 @@ import { useTranslation } from 'contexts/Localization'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'
 import { REQUEST_SIZE } from '../config'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 interface CollectionNftsProps {
   collection: Collection
@@ -133,9 +138,9 @@ const CollectionNfts: React.FC<CollectionNftsProps> = ({ collection }) => {
         </Text>
       </Flex>
       <Grid
-        gridGap="16px"
-        gridTemplateColumns={['1fr', null, 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
-        alignItems="start"
+        // gridGap="16px"
+        // gridTemplateColumns={['1fr', null, 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
+        // alignItems="start"
       >
         {nftsToShow.map((nft) => {
           const currentAskPriceAsNumber = nft.marketData && parseFloat(nft.marketData.currentAskPrice)

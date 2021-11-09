@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { BunnyPlaceholderIcon, Button, Flex, Grid, Text } from 'maki-toolkit'
+import { BunnyPlaceholderIcon, Button, Flex, Text } from 'maki-toolkit'
 import {
   useGetNftFilterLoadingState,
   useGetNftOrdering,
@@ -12,6 +13,10 @@ import { useTranslation } from 'contexts/Localization'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'
 import { REQUEST_SIZE } from '../config'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 interface FilteredCollectionNftsProps {
   collection: Collection

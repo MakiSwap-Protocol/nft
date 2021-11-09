@@ -4,14 +4,12 @@ import {
   BinanceIcon,
   Box,
   BoxProps,
-  CameraIcon,
   Flex,
   FlexProps,
-  SellIcon,
   Text,
-  WalletFilledIcon,
   Skeleton,
 } from 'maki-toolkit'
+import { WalletFilledIcon } from 'components/Svg'
 import { Price } from 'maki-sdk'
 import { useTranslation } from 'contexts/Localization'
 import { multiplyPriceByAmount } from 'utils/prices'
@@ -91,7 +89,11 @@ export const ProfileNftTag: React.FC<NftTagProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <NftTag icon={<CameraIcon mr="4px" width="16px" color="textSubtle" />} color="textSubtle" {...props}>
+    <NftTag
+      // icon={<CameraIcon mr="4px" width="16px" color="textSubtle" />}
+      color="textSubtle"
+      {...props}
+    >
       {t('Profile')}
     </NftTag>
   )
@@ -111,7 +113,10 @@ export const SellingNftTag: React.FC<NftTagProps> = (props) => {
   const { t } = useTranslation()
 
   return (
-    <NftTag icon={<SellIcon mr="4px" width="16px" color="failure" />} color="failure" {...props}>
+    <NftTag
+      // icon={<SellIcon mr="4px" width="16px" color="failure" />}
+      color="failure" {...props}
+    >
       {t('Selling')}
     </NftTag>
   )

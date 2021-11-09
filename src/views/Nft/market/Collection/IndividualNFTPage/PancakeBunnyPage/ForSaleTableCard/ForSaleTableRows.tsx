@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
 import { Price } from 'maki-sdk'
-import { Button, Grid, Text, Flex, Box, BinanceIcon, useModal, Skeleton } from 'maki-toolkit'
+import { Button, Text, Flex, Box, BinanceIcon, useModal, Skeleton } from 'maki-toolkit'
 import { formatNumber } from 'utils/formatBalance'
 import { ContextApi } from 'contexts/Localization/types'
 import { useTranslation } from 'contexts/Localization'
@@ -13,6 +13,10 @@ import BuyModal from 'views/Nft/market/components/BuySellModals/BuyModal'
 import SellModal from 'views/Nft/market/components/BuySellModals/SellModal'
 import ProfileCell from 'views/Nft/market/components/ProfileCell'
 import { ButtonContainer } from '../../shared/styles'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 const OwnersTableRow = styled(Grid)`
   grid-template-columns: 2fr 2fr 1fr;

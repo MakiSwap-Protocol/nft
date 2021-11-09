@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
-import { Grid, Text, Card, Box, ChevronUpIcon, ChevronDownIcon, IconButton } from 'maki-toolkit'
+import { Text, Card, Box, ChevronUpIcon, ChevronDownIcon, IconButton } from 'maki-toolkit'
 import useTheme from 'hooks/useTheme'
 
 const expandAnimation = keyframes`
@@ -19,6 +19,10 @@ const collapseAnimation = keyframes`
   to {
     max-height: 0px;
   }
+`
+
+const Grid = styled.div`
+  display: grid;
 `
 
 const ExpandableCardBody = styled(Box)<{ expanded: boolean }>`
@@ -48,11 +52,11 @@ const ExpandableCard: React.FC<ExpandableCardProps> = ({ icon, title, content })
   return (
     <FullWidthCard>
       <Grid
-        gridTemplateColumns="1fr 8fr 1fr"
-        alignItems="center"
-        height="72px"
-        px="24px"
-        borderBottom={`1px solid ${theme.colors.cardBorder}`}
+        // gridTemplateColumns="1fr 8fr 1fr"
+        // alignItems="center"
+        // height="72px"
+        // px="24px"
+        // borderBottom={`1px solid ${theme.colors.cardBorder}`}
       >
         {icon}
         <Text bold>{title}</Text>

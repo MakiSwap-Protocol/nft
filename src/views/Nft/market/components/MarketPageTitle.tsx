@@ -1,13 +1,21 @@
 import React, { ReactNode } from 'react'
-import { Box, Grid, GridProps, Heading } from 'maki-toolkit'
+import styled from 'styled-components'
+import { Box, Heading } from 'maki-toolkit'
 
-interface MarketPageTitleProps extends GridProps {
+const Grid = styled.div`
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr null, null, null, repeat(2, 1fr);
+  grid-gap: 16px;
+`
+
+interface MarketPageTitleProps {
   title: string
   description?: ReactNode
 }
 
 const MarketPageTitle: React.FC<MarketPageTitleProps> = ({ title, description, children, ...props }) => (
-  <Grid gridGap="16px" alignItems="center" gridTemplateColumns={['1fr', null, null, null, 'repeat(2, 1fr)']} {...props}>
+  <Grid>
     <Box>
       <Heading as="h1" scale="xl" color="secondary" mb="16px">
         {title}

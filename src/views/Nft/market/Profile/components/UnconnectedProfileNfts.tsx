@@ -1,10 +1,18 @@
 import React from 'react'
-import { Grid, Text, Flex } from 'maki-toolkit'
+import styled from 'styled-components'
+import { Text, Flex } from 'maki-toolkit'
 import { NftToken } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import NoNftsImage from './NoNftsImage'
+
+const Grid = styled.div`
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr repeat(2, 1fr) repeat(3, 1fr) null repeat(4, 1fr);
+  grid-gap: 16px;
+`
 
 const UserNfts: React.FC<{ nfts: NftToken[]; isLoading: boolean }> = ({ nfts, isLoading }) => {
   const { t } = useTranslation()

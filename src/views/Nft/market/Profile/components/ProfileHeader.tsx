@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { BscScanIcon, Flex, IconButton, Link, Button, useModal } from 'maki-toolkit'
+import { Flex, IconButton, Link, Button, useModal } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import { getEtherscanLink } from 'utils'
 import { formatNumber } from 'utils/formatBalance'
@@ -40,7 +40,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
   isProfileLoading,
 }) => {
   const { t } = useTranslation()
-  const { account } = useWeb3React()
+  const { chainId, account } = useWeb3React()
   const [onEditProfileModal] = useModal(<EditProfileModal />, false)
 
   const isConnectedAccount = account?.toLowerCase() === accountPath?.toLowerCase()
@@ -80,10 +80,10 @@ const ProfileHeader: React.FC<HeaderProps> = ({
             <StyledIconButton
               target="_blank"
               as="a"
-              href={getEtherscanLink(accountPath, 'address')}
-              alt={t('View BscScan for user address')}
-            >
-              <BscScanIcon width="20px" color="primary" />
+              href={getEtherscanLink(chainId, accountPath, 'address')}
+              alt={t('View HecoScan for user address')}
+            > Scan
+              {/* <BscScanIcon width="20px" color="primary" /> */}
             </StyledIconButton>
           )}
         </Flex>
@@ -140,7 +140,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
     return (
       <Flex flexDirection="column" mb={[16, null, 0]} mr={[0, null, 16]}>
         {accountPath && profile?.username && (
-          <Link href={getEtherscanLink(accountPath, 'address')} external bold color="primary">
+          <Link href={getEtherscanLink(chainId, accountPath, 'address')} external bold color="primary">
             {truncateHash(accountPath)}
           </Link>
         )}

@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Box, Flex, Grid, Image } from 'maki-toolkit'
+import { Box, Flex, Image } from 'maki-toolkit'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 export const TwoColumnsContainer = styled(Flex)`
   gap: 22px;

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { Flex, Grid, Box, Text, Button, BinanceIcon, ErrorIcon, useTooltip } from 'maki-toolkit'
+import styled from 'styled-components'
+import { Flex, Box, Text, Button, BinanceIcon, ErrorIcon, useTooltip } from 'maki-toolkit'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import { useTranslation } from 'contexts/Localization'
@@ -7,6 +8,10 @@ import { NftToken } from 'state/nftMarket/types'
 import { useGetCollection } from 'state/nftMarket/hooks'
 import { Divider } from '../shared/styles'
 import { GreyedOutContainer, BnbAmountCell, RightAlignedInput, FeeAmountCell } from './styles'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 interface SetPriceStageProps {
   nftToSell: NftToken
@@ -143,7 +148,11 @@ const SetPriceStage: React.FC<SetPriceStageProps> = ({
           </Flex>
         )}
       </GreyedOutContainer>
-      <Grid gridTemplateColumns="32px 1fr" p="16px" maxWidth="360px">
+      <Grid
+        // gridTemplateColumns="32px 1fr"
+        // p="16px"
+        // maxWidth="360px"
+      >
         <Flex alignSelf="flex-start">
           <ErrorIcon width={24} height={24} color="textSubtle" />
         </Flex>

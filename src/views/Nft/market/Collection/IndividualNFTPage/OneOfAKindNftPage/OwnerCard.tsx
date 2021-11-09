@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Card, Grid, SellIcon, Text, useModal, Box, BinanceIcon, Skeleton, Button } from 'maki-toolkit'
+import { Flex, Card, SellIcon, Text, useModal, Box, BinanceIcon, Skeleton, Button } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'
@@ -12,6 +12,10 @@ import BuyModal from '../../../components/BuySellModals/BuyModal'
 import SellModal from '../../../components/BuySellModals/SellModal'
 import ProfileCell from '../../../components/ProfileCell'
 import { ButtonContainer, TableHeading } from '../shared/styles'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 const StyledCard = styled(Card)`
   width: 100%;
@@ -52,12 +56,12 @@ const OwnerCard: React.FC<OwnerCardProps> = ({ nft, isOwnNft, nftIsProfilePic })
   return (
     <StyledCard>
       <Grid
-        flex="0 1 auto"
-        gridTemplateColumns="34px 1fr"
-        alignItems="center"
-        height="72px"
-        px="24px"
-        borderBottom={`1px solid ${theme.colors.cardBorder}`}
+        // flex="0 1 auto"
+        // gridTemplateColumns="34px 1fr"
+        // alignItems="center"
+        // height="72px"
+        // px="24px"
+        // borderBottom={`1px solid ${theme.colors.cardBorder}`}
       >
         <SellIcon width="24px" height="24px" />
         <Text bold>{t('Owner')}</Text>

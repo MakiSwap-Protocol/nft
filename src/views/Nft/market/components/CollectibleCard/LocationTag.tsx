@@ -1,6 +1,7 @@
 import React from 'react'
 import { NftLocation } from 'state/nftMarket/types'
-import { Text, Flex, WalletFilledIcon, CameraIcon, SellIcon } from 'maki-toolkit'
+import { Text, Flex } from 'maki-toolkit'
+import { WalletFilledIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'
 
 const LocationTag: React.FC<{ nftLocation: NftLocation }> = ({ nftLocation }) => {
@@ -20,7 +21,7 @@ const LocationTag: React.FC<{ nftLocation: NftLocation }> = ({ nftLocation }) =>
   const ForSaleTag = () => {
     return (
       <Flex justifyContent="center">
-        <SellIcon height="12px" color="failure" />
+        {/* <SellIcon height="12px" color="failure" /> */}
         <Text color="failure" fontSize="14px">
           {t('For sale')}
         </Text>
@@ -31,7 +32,7 @@ const LocationTag: React.FC<{ nftLocation: NftLocation }> = ({ nftLocation }) =>
   const ProfilePicTag = () => {
     return (
       <Flex justifyContent="center">
-        <CameraIcon height="12px" color="textSubtle" />
+        {/* <CameraIcon height="12px" color="textSubtle" /> */}
         <Text color="textSubtle" fontSize="14px">
           {t('Profile')}
         </Text>

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import {
   Flex,
   Card,
-  Grid,
   Text,
   ArrowBackIcon,
   ArrowForwardIcon,
@@ -34,6 +33,10 @@ const StyledCard = styled(Card)<{ hasManyPages: boolean }>`
       ${({ hasManyPages }) => (hasManyPages ? 'min-height: 850px;' : null)}
     }
   }
+`
+
+const Grid = styled.div`
+  display: grid;
 `
 
 interface ForSaleTableCardProps {
@@ -97,12 +100,12 @@ const ForSaleTableCard: React.FC<ForSaleTableCardProps> = ({
   return (
     <StyledCard hasManyPages={maxPage > 1}>
       <Grid
-        flex="0 1 auto"
-        gridTemplateColumns="34px 1fr 48px"
-        alignItems="center"
-        height="72px"
-        px="24px"
-        borderBottom={`1px solid ${theme.colors.cardBorder}`}
+        // flex="0 1 auto"
+        // gridTemplateColumns="34px 1fr 48px"
+        // alignItems="center"
+        // height="72px"
+        // px="24px"
+        // borderBottom={`1px solid ${theme.colors.cardBorder}`}
       >
         <SellIcon width="24px" height="24px" />
         <Text bold>{t('For Sale (%num%)', { num: totalForSale.toLocaleString() })}</Text>

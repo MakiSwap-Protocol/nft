@@ -3,16 +3,15 @@ import styled from 'styled-components'
 import {
   Box,
   Flex,
-  Grid,
   Text,
   CogIcon,
-  SellIcon,
-  WalletFilledIcon,
-  CameraIcon,
+  // SellIcon,
+  // CameraIcon,
   BinanceIcon,
   Skeleton,
   useModal,
 } from 'maki-toolkit'
+import { WalletFilledIcon } from 'components/Svg'
 import { useWeb3React } from '@web3-react/core'
 import { useUserNfts } from 'state/nftMarket/hooks'
 import { NftLocation, NftToken, UserNftInitializationState } from 'state/nftMarket/types'
@@ -23,6 +22,10 @@ import useFetchUserNfts from '../../../Profile/hooks/useFetchUserNfts'
 import SellModal from '../../../components/BuySellModals/SellModal'
 import ProfileNftModal from '../../../components/ProfileNftModal'
 import { SmallRoundedImage, CollectibleRowContainer } from '../shared/styles'
+
+const Grid = styled.div`
+  display: grid;
+`
 
 const ScrollableContainer = styled(Box)`
   overflow-y: auto;
@@ -41,9 +44,9 @@ const LocationColors = {
 }
 
 const LocationIcons = {
-  [NftLocation.FORSALE]: SellIcon,
+  // [NftLocation.FORSALE]: SellIcon,
   [NftLocation.WALLET]: WalletFilledIcon,
-  [NftLocation.PROFILE]: CameraIcon,
+  // [NftLocation.PROFILE]: CameraIcon,
 }
 
 interface CollectibleRowProps {
@@ -65,7 +68,9 @@ const CollectibleRow: React.FC<CollectibleRowProps> = ({ nft, lowestPrice }) => 
       onClick={nft.location === NftLocation.PROFILE ? onPresentProfileNftModal : onPresentModal}
     >
       <SmallRoundedImage src={nft.image.thumbnail} width={64} height={64} mx="16px" />
-      <Grid gridTemplateColumns="1fr 1fr">
+      <Grid
+        // gridTemplateColumns="1fr 1fr"
+      >
         <Text bold>{nft.name}</Text>
         <Text fontSize="12px" color="textSubtle" textAlign="right">
           {nft.collectionName}

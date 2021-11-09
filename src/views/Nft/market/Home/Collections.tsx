@@ -1,12 +1,21 @@
 import React from 'react'
+import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { Button, ChevronRightIcon, Flex, Grid, Heading, Text } from 'maki-toolkit'
+import { Button, ChevronRightIcon, Flex, Heading, Text } from 'maki-toolkit'
 import { Link } from 'react-router-dom'
 import { useGetCollections } from 'state/nftMarket/hooks'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { useTranslation } from 'contexts/Localization'
 import { HotCollectionCard } from '../components/CollectibleCard'
 import { BNBAmountLabel } from '../components/CollectibleCard/styles'
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr repeat(2, 1fr) repeat(3, 1fr);
+  grid-template-rows: repeat(4, auto);
+  grid-gap: 16px;
+  margin-bottom: 64px;
+`
 
 const Collections = () => {
   const { t } = useTranslation()
@@ -34,7 +43,7 @@ const Collections = () => {
           {t('View All')}
         </Button>
       </Flex>
-      <Grid gridGap="16px" gridTemplateColumns={['1fr', '1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)']} mb="64px">
+      <Grid>
         {orderedCollections.slice(0, 5).map((collection) => {
           return (
             <HotCollectionCard
