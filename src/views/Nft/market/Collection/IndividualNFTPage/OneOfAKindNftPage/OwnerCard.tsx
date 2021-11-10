@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Card, SellIcon, Text, useModal, Box, BinanceIcon, Skeleton, Button } from 'maki-toolkit'
+import { Flex, Card, Text, useModal, Box, BinanceIcon, Skeleton, Button } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'
@@ -63,7 +63,7 @@ const OwnerCard: React.FC<OwnerCardProps> = ({ nft, isOwnNft, nftIsProfilePic })
         // px="24px"
         // borderBottom={`1px solid ${theme.colors.cardBorder}`}
       >
-        <SellIcon width="24px" height="24px" />
+        {/* <SellIcon width="24px" height="24px" /> */}
         <Text bold>{t('Owner')}</Text>
       </Grid>
       {owner && (

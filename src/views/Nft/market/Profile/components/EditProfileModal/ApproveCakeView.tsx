@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
-import { useCake } from 'hooks/useContract'
+import { useMaki } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useProfile } from 'state/profile/hooks'
-import { getPancakeProfileAddress } from 'utils/addressHelpers'
+import { getProfileAddress } from 'utils/addressHelpers'
 import { formatBigNumber } from 'utils/formatBalance'
 import useGetProfileCosts from 'views/Nft/market/Profile/hooks/useGetProfileCosts'
 import { UseEditProfileResponse } from './reducer'
@@ -20,12 +20,12 @@ const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss
   const {
     costs: { numberCakeToUpdate, numberCakeToReactivate },
   } = useGetProfileCosts()
-  const cakeContract = useCake()
+  const cakeContract = useMaki()
   const { toastError } = useToast()
   const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
 
   const handleApprove = async () => {
-    const tx = await cakeContract.approve(getPancakeProfileAddress(), cost.mul(2).toString())
+    const tx = await cakeContract.approve(getProfileAddress(), cost.mul(2).toString())
     setIsApproving(true)
     const receipt = await tx.wait()
     if (receipt.status) {

@@ -74,6 +74,12 @@ export interface Profile {
   hasRegistered: boolean;
 }
 
+export enum ProfileAvatarFetchStatus {
+  NOT_FETCHED = "not-fetched",
+  FETCHING = "fetching",
+  FETCHED = "fetched",
+}
+
 // Slices states
 
 export interface FarmsState {

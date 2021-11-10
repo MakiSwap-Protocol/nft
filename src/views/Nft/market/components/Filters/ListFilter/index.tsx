@@ -5,9 +5,7 @@ import {
   Button,
   Text,
   Flex,
-  InlineMenu,
   Input,
-  InputGroup,
   SearchIcon,
   IconButton,
   CloseIcon,
@@ -139,7 +137,7 @@ export const ListFilter: React.FC<ListFilterProps> = ({ title, traitType, items,
   return (
     <Flex alignItems="center" mr="4px" mb="4px">
       <Box ref={wrapperRef}>
-        <InlineMenu
+        {/* <InlineMenu
           component={
             <TriggerButton
               onClick={handleMenuClick}
@@ -153,12 +151,12 @@ export const ListFilter: React.FC<ListFilterProps> = ({ title, traitType, items,
           }
           isOpen={isOpen}
           options={{ placement: 'bottom' }}
-        >
+        > */}
           <Box maxWidth="375px" ref={menuRef}>
             <SearchWrapper alignItems="center" p="16px">
-              <InputGroup startIcon={<SearchIcon color="textSubtle" />}>
+              {/* <InputGroup startIcon={<SearchIcon color="textSubtle" />}> */}
                 <Input name="query" placeholder={t('Search')} onChange={handleChange} value={query} />
-              </InputGroup>
+              {/* </InputGroup> */}
             </SearchWrapper>
             <Flex alignItems="center" p="16px">
               <FilterButton onClick={toggleSort('label')} style={{ flex: 1 }}>
@@ -204,7 +202,7 @@ export const ListFilter: React.FC<ListFilterProps> = ({ title, traitType, items,
               )}
             </Box>
           </Box>
-        </InlineMenu>
+        {/* </InlineMenu> */}
       </Box>
       {isTraitSelected && (
         <CloseButton

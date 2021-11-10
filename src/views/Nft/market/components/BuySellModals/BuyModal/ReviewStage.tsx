@@ -1,12 +1,12 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { Flex, Text, Button, ButtonMenu, ButtonMenuItem, Message, Link } from 'maki-toolkit'
+import { Flex, Text, Button, ButtonMenu, ButtonMenuItem, Link } from 'maki-toolkit'
 import { FetchStatus } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { BASE_URL } from 'config'
 import { NftToken } from 'state/nftMarket/types'
-import { getBscScanLinkForNft } from 'utils'
+import { getHuobiScanLinkForNft } from 'utils'
 import { Divider, RoundedImage } from '../shared/styles'
 import { BorderedBox, BnbAmountCell } from './styles'
 import { PaymentCurrency } from './types'
@@ -55,7 +55,7 @@ const ReviewStage: React.FC<ReviewStageProps> = ({
                 pt="2px"
                 external
                 variant="text"
-                href={getBscScanLinkForNft(nftToBuy.collectionAddress, nftToBuy.tokenId)}
+                href={getHuobiScanLinkForNft(nftToBuy.collectionAddress, nftToBuy.tokenId)}
               >
                 {nftToBuy.tokenId}
               </Button>
@@ -95,13 +95,13 @@ const ReviewStage: React.FC<ReviewStageProps> = ({
           )}
         </BorderedBox>
         {walletFetchStatus === FetchStatus.SUCCESS && notEnoughBnbForPurchase && (
-          <Message p="8px" variant="danger">
+          // <Message p="8px" variant="danger">
             <Text>
               {t('Not enough %symbol% to purchase this NFT', {
                 symbol: paymentCurrency === PaymentCurrency.BNB ? 'BNB' : 'WBNB',
               })}
             </Text>
-          </Message>
+          // </Message>
         )}
         <Flex alignItems="center">
           <Text my="16px" mr="4px">

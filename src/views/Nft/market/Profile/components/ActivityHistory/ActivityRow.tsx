@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Flex, Text, Td, IconButton, Link, OpenNewIcon, useMatchBreakpoints, useModal } from 'maki-toolkit'
+import { Image, Flex, Text, IconButton, Link, OpenNewIcon, useMatchBreakpoints, useModal } from 'maki-toolkit'
 import { NftToken } from 'state/nftMarket/types'
 import { Price } from 'maki-sdk'
 import styled from 'styled-components'
@@ -41,7 +41,7 @@ const ActivityRow: React.FC<ActivityRowProps> = ({ activity, bnbBusdPrice, nft }
 
   return (
     <tr {...((isXs || isSm) && { onClick: onPresentMobileModal })}>
-      <Td>
+      <td>
         <Flex justifyContent="flex-start" alignItems="center" flexDirection={['column', null, 'row']}>
           <RoundedImage
             src={nft?.image.thumbnail}
@@ -60,38 +60,38 @@ const ActivityRow: React.FC<ActivityRowProps> = ({ activity, bnbBusdPrice, nft }
             </Text>
           </Flex>
         </Flex>
-      </Td>
-      <Td>
+      </td>
+      <td>
         <Flex alignItems="center" justifyContent="flex-end">
           <ActivityEventText marketEvent={activity.marketEvent} />
         </Flex>
         {isXs || isSm ? <ActivityPrice price={priceAsFloat} bnbBusdPrice={bnbBusdPrice} /> : null}
-      </Td>
+      </td>
       {isXs || isSm ? null : (
         <>
-          <Td>
+          <td>
             <ActivityPrice price={priceAsFloat} bnbBusdPrice={bnbBusdPrice} />
-          </Td>
-          <Td>
+          </td>
+          <td>
             <Flex justifyContent="flex-end" alignItems="center">
               {activity.otherParty ? <ProfileCell accountAddress={activity.otherParty} /> : '-'}
             </Flex>
-          </Td>
+          </td>
         </>
       )}
-      <Td>
+      <td>
         <Flex justifyContent="center">
           <Text textAlign="center" fontSize={isXs || isSm ? '12px' : '16px'}>
             {localeTimestamp}
           </Text>
         </Flex>
-      </Td>
+      </td>
       {isXs || isSm ? null : (
-        <Td>
-          <IconButton as={Link} external href={getEtherscanLink(activity.tx, 'transaction', chainId)}>
+        <td>
+          <IconButton as={Link} external href={getEtherscanLink(chainId, activity.tx, 'transaction')}>
             <OpenNewIcon color="textSubtle" width="18px" />
           </IconButton>
-        </Td>
+        </td>
       )}
     </tr>
   )

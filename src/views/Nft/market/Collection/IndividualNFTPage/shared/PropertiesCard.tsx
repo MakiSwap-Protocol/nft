@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Text, NftIcon } from 'maki-toolkit'
+import { Box, Flex, Text } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import { NftAttribute } from 'state/nftMarket/types'
 import ExpandableCard from './ExpandableCard'
@@ -52,7 +52,10 @@ const PropertiesCard: React.FC<PropertiesCardProps> = ({ properties, rarity }) =
       ))}
     </Box>
   )
-  return <ExpandableCard title={t('Properties')} icon={<NftIcon width="24px" height="24px" />} content={content} />
+  return <ExpandableCard
+    title={t('Properties')}
+    // icon={<NftIcon width="24px" height="24px" />}
+    content={content} />
 }
 
 export default PropertiesCard

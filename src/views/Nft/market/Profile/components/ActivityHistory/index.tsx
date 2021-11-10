@@ -5,7 +5,7 @@ import { isAddress } from 'utils'
 import { fetchUserActivity } from 'state/nftMarket/reducer'
 import { useAppDispatch } from 'state'
 import { useUserNfts } from 'state/nftMarket/hooks'
-import { ArrowBackIcon, ArrowForwardIcon, Card, Flex, Table, Text, Th, useMatchBreakpoints } from 'maki-toolkit'
+import { ArrowBackIcon, ArrowForwardIcon, Card, Flex, Text, useMatchBreakpoints } from 'maki-toolkit'
 import { getNftsFromDifferentCollectionsApi, getUserActivity } from 'state/nftMarket/helpers'
 import { NftToken, TokenIdWithCollectionAddress, UserNftInitializationState } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'
@@ -126,19 +126,19 @@ const ActivityHistory = () => {
         </Flex>
       ) : (
         <>
-          <Table>
+          <table>
             <thead>
               <tr>
-                <Th textAlign={['center', null, 'left']}> {t('Item')}</Th>
-                <Th textAlign="right"> {t('Event')}</Th>
+                <th style={{ textAlign: 'center' }}> {t('Item')}</th>
+                <th style={{ textAlign: 'right' }}> {t('Event')}</th>
                 {isXs || isSm ? null : (
                   <>
-                    <Th textAlign="right"> {t('Price')}</Th>
-                    <Th textAlign="right"> {t('From/To')}</Th>
+                    <th style={{ textAlign: 'right' }}> {t('Price')}</th>
+                    <th style={{ textAlign: 'right' }}> {t('From/To')}</th>
                   </>
                 )}
-                <Th textAlign="center"> {t('Date')}</Th>
-                {isXs || isSm ? null : <Th />}
+                <th style={{ textAlign: 'center' }}> {t('Date')}</th>
+                {isXs || isSm ? null : <th />}
               </tr>
             </thead>
 
@@ -159,7 +159,7 @@ const ActivityHistory = () => {
                 })
               )}
             </tbody>
-          </Table>
+          </table>
           <Flex
             borderTop={`1px ${theme.colors.cardBorder} solid`}
             pt="24px"

@@ -4,7 +4,7 @@ import { Flex, Text, Button, Link, BinanceIcon, LinkExternal, useModal } from 'm
 import { useTranslation } from 'contexts/Localization'
 import { nftsBaseUrl, pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { NftToken } from 'state/nftMarket/types'
-import { getBscScanLinkForNft } from 'utils'
+import { getHuobiScanLinkForNft } from 'utils'
 import EditProfileModal from 'views/Nft/market/Profile/components/EditProfileModal'
 import { useProfile } from 'state/profile/hooks'
 import { Divider, HorizontalDivider, RoundedImage } from '../shared/styles'
@@ -88,7 +88,7 @@ const SellStage: React.FC<SellStageProps> = ({
           <LinkExternal
             p="0px"
             height="16px"
-            href={getBscScanLinkForNft(nftToSell.collectionAddress, nftToSell.tokenId)}
+            href={getHuobiScanLinkForNft(nftToSell.collectionAddress, nftToSell.tokenId)}
           >
             BscScan
           </LinkExternal>

@@ -11,7 +11,7 @@ import {
   Button,
   Spinner,
 } from 'maki-toolkit'
-import { SellIcon, ArrowUpIcon } from 'components/Svg'
+import { ArrowUpIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'
@@ -107,7 +107,7 @@ const ForSaleTableCard: React.FC<ForSaleTableCardProps> = ({
         // px="24px"
         // borderBottom={`1px solid ${theme.colors.cardBorder}`}
       >
-        <SellIcon width="24px" height="24px" />
+        {/* <SellIcon width="24px" height="24px" /> */}
         <Text bold>{t('For Sale (%num%)', { num: totalForSale.toLocaleString() })}</Text>
         <UpdateIndicator />
       </Grid>

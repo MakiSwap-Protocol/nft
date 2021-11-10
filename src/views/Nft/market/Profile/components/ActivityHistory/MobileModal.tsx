@@ -4,11 +4,11 @@ import { Price } from 'maki-sdk'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'
 import { NftToken } from 'state/nftMarket/types'
-import { LightGreyCard } from 'components/Card'
+import { LightCard } from 'components/Card'
 import { useTranslation } from 'contexts/Localization'
 import truncateHash from 'utils/truncateHash'
 import { multiplyPriceByAmount } from 'utils/prices'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import { useActiveWeb3React } from 'hooks'
 import { getEtherscanLink } from 'utils'
 import { Activity } from '../../utils/sortUserActivity'
 import ActivityEventText from './ActivityEventText'
@@ -45,7 +45,7 @@ const MobileModal: React.FC<MobileModalProps> = ({ nft, activity, bnbBusdPrice, 
             <Text bold>{nft.name}</Text>
           </Flex>
         </Flex>
-        <LightGreyCard p="16px">
+        <LightCard p="16px">
           <Flex mb="24px" justifyContent="space-between">
             <ActivityEventText fontSize="14px" marketEvent={activity.marketEvent} />
             {priceAsFloat ? (
@@ -77,9 +77,9 @@ const MobileModal: React.FC<MobileModalProps> = ({ nft, activity, bnbBusdPrice, 
             </Text>
             <Text>{localeTimestamp}</Text>
           </Flex>
-        </LightGreyCard>
+        </LightCard>
         <Flex flexDirection="column" pt="16px" alignItems="center">
-          <Button as={Link} external href={getEtherscanLink(activity.tx, 'transaction', chainId)}>
+          <Button as={Link} external href={getEtherscanLink(chainId, activity.tx, 'transaction')}>
             {t('View on BscScan')}
           </Button>
         </Flex>

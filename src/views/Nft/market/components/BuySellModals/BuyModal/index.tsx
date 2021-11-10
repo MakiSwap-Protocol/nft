@@ -8,7 +8,7 @@ import { getBalanceNumber } from 'utils/formatBalance'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import tokens from 'config/constants/tokens'
 import { parseUnits, formatEther } from 'ethers/lib/utils'
-import { useERC20, useNftMarketContract } from 'hooks/useContract'
+import { useHRC20, useNftMarketContract } from 'hooks/useContract'
 import { useWeb3React } from '@web3-react/core'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
@@ -44,8 +44,8 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
   const { t } = useTranslation()
   const { callWithGasPrice } = useCallWithGasPrice()
 
-  const { account } = useWeb3React()
-  const wbnbContract = useERC20(tokens.wbnb.address)
+  const { chainId, account } = useWeb3React()
+  const wbnbContract = useHRC20(tokens.wht.address[chainId])
   const nftMarketContract = useNftMarketContract()
 
   const { toastSuccess } = useToast()
@@ -58,7 +58,7 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
   const { balance: bnbBalance, fetchStatus: bnbFetchStatus } = useGetBnbBalance()
   const formattedBnbBalance = parseFloat(formatEther(bnbBalance))
   // WBNB - returns BigNumber
-  const { balance: wbnbBalance, fetchStatus: wbnbFetchStatus } = useTokenBalance(tokens.wbnb.address)
+  const { balance: wbnbBalance, fetchStatus: wbnbFetchStatus } = useTokenBalance(tokens.wht.address[chainId])
   const formattedWbnbBalance = getBalanceNumber(wbnbBalance)
 
   const walletBalance = paymentCurrency === PaymentCurrency.BNB ? formattedBnbBalance : formattedWbnbBalance

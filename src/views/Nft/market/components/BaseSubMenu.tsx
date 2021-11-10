@@ -1,7 +1,6 @@
-import { SubMenuItems } from 'maki-toolkit'
 import styled from 'styled-components'
 
-const BaseSubMenu = styled(SubMenuItems)`
+const BaseSubMenu = styled.div`
   background-color: transparent;
   border-bottom: 1px ${({ theme }) => theme.colors.cardBorder} solid;
 `

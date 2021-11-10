@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, BoxProps, Button, Grid, InlineMenu, TextField } from 'maki-toolkit'
+import { Box, BoxProps, Button } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
 import FilterFooter from '../FilterFooter'
 
@@ -53,20 +53,20 @@ export const MinMaxFilter: React.FC<MinMaxFilterProps> = ({ onApply, onClear, ma
   }, [currentMin, currentMax, setIsError])
 
   return (
-    <InlineMenu
-      component={
-        <Button variant="light" scale="sm">
-          {t('Price')}
-        </Button>
-      }
-      {...props}
-    >
+    // <InlineMenu
+    //   component={
+    //     <Button variant="secondary" scale="sm">
+    //       {t('Price')}
+    //     </Button>
+    //   }
+    //   {...props}
+    // >
       <Box width="320px">
         <Box px="24px" py="16px">
-          <Grid gridGap="16px" gridTemplateColumns="repeat(2, 1fr)">
-            <TextField label={t('Min')} value={currentMin} onUserInput={handleMinChange} isWarning={isError} />
-            <TextField label={t('Max')} value={currentMax} onUserInput={handleMaxChange} isWarning={isError} />
-          </Grid>
+          {/* <Grid gridGap="16px" gridTemplateColumns="repeat(2, 1fr)">
+            <Input label={t('Min')} value={currentMin} onUserInput={handleMinChange} isWarning={isError} />
+            <Input label={t('Max')} value={currentMax} onUserInput={handleMaxChange} isWarning={isError} />
+          </Grid> */}
         </Box>
         <FilterFooter>
           <Button variant="secondary" onClick={handleClear}>
@@ -77,6 +77,6 @@ export const MinMaxFilter: React.FC<MinMaxFilterProps> = ({ onApply, onClear, ma
           </Button>
         </FilterFooter>
       </Box>
-    </InlineMenu>
+    // </InlineMenu>
   )
 }
