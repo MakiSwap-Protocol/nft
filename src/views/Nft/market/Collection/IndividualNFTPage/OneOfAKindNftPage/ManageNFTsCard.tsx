@@ -49,10 +49,10 @@ const CollectibleRow: React.FC<CollectibleRowProps> = ({ nft }) => {
   const [onPresentModal] = useModal(<SellModal variant={modalVariant} nftToSell={nft} />)
   return (
     <CollectibleRowContainer
-      gridTemplateColumns="96px 1fr"
-      px="16px"
-      pb="8px"
-      my="16px"
+      // gridTemplateColumns="96px 1fr"
+      // px="16px"
+      // pb="8px"
+      // my="16px"
       onClick={nft.location === NftLocation.PROFILE ? onPresentProfileNftModal : onPresentModal}
     >
       <SmallRoundedImage src={nft.image.thumbnail} width={64} height={64} mx="16px" />
@@ -92,7 +92,9 @@ const CollectibleByLocation: React.FC<CollectibleByLocationProps> = ({ nft }) =>
   const IconComponent = LocationIcons[nft.location]
   return (
     <Flex flexDirection="column">
-      <Grid gridTemplateColumns="32px 1fr" px="16px" pb="8px">
+      <Grid
+        // gridTemplateColumns="32px 1fr" px="16px" pb="8px
+      >
         <IconComponent color={LocationColors[nft.location]} width="24px" height="24px" />
         <Text display="inline" bold color={LocationColors[nft.location]}>
           {t(nft.location)}

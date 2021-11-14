@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import shuffle from 'lodash/shuffle'
 import styled from 'styled-components'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react'
 import SwiperCore from 'swiper'
 import { ArrowBackIcon, ArrowForwardIcon, Box, IconButton, Text, Flex, useMatchBreakpoints } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'

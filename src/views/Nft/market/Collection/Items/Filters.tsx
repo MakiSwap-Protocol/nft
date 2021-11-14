@@ -53,9 +53,6 @@ const GridContainer = styled(Grid)`
       'filterByTitle . sortByTitle'
       'filterByControls attributeFilters sortByControls';
   }
-  ${({ theme }) => theme.mediaQueries.xxl} {
-    grid-template-columns: 1fr 5fr 1fr;
-  }
 `
 
 const FilterByTitle = styled(Text)`

@@ -4,13 +4,13 @@ import { useWeb3React } from '@web3-react/core'
 import { parseUnits } from 'ethers/lib/utils'
 import useTheme from 'hooks/useTheme'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+// import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useToast from 'hooks/useToast'
-import { ToastDescriptionWithTx } from 'components/Toast'
+// import { ToastDescriptionWithTx } from 'components/Toast'
 import { useTranslation } from 'contexts/Localization'
 import { ContextApi } from 'contexts/Localization/types'
 import { isAddress } from 'utils'
-import { useErc721CollectionContract, useNftMarketContract } from 'hooks/useContract'
+// import { useErc721CollectionContract, useNftMarketContract } from 'hooks/useContract'
 import { useAppDispatch } from 'state'
 import { removeUserNft, updateUserNft } from 'state/nftMarket/reducer'
 import { NftLocation, NftToken } from 'state/nftMarket/types'
@@ -21,7 +21,7 @@ import EditStage from './EditStage'
 import ApproveAndConfirmStage from '../shared/ApproveAndConfirmStage'
 import TransactionConfirmed from '../shared/TransactionConfirmed'
 import { StyledModal, stagesWithBackButton } from './styles'
-import { SellingStage } from './types'
+import SellingStage from './types'
 import ConfirmStage from '../shared/ConfirmStage'
 import RemoveStage from './RemoveStage'
 import TransferStage from './TransferStage'
@@ -85,10 +85,10 @@ const SellModal: React.FC<SellModalProps> = ({ variant, nftToSell, onDismiss }) 
   const { t } = useTranslation()
   const { theme } = useTheme()
   const { account } = useWeb3React()
-  const { callWithGasPrice } = useCallWithGasPrice()
+  // const { callWithGasPrice } = useCallWithGasPrice()
   const { toastSuccess } = useToast()
-  const collectionContract = useErc721CollectionContract(nftToSell.collectionAddress)
-  const nftMarketContract = useNftMarketContract()
+  // const collectionContract = useErc721CollectionContract(nftToSell.collectionAddress)
+  // const nftMarketContract = useNftMarketContract()
   const dispatch = useAppDispatch()
 
   const isInvalidTransferAddress = transferAddress.length > 0 && !isAddress(transferAddress)
@@ -195,41 +195,42 @@ const SellModal: React.FC<SellModalProps> = ({ variant, nftToSell, onDismiss }) 
 
   const { isApproving, isApproved, isConfirming, handleApprove, handleConfirm } = useApproveConfirmTransaction({
     onRequiresApproval: async () => {
+      return true;
       try {
-        const approvedForContract = await collectionContract.isApprovedForAll(account, nftMarketContract.address)
-        return approvedForContract
+        // const approvedForContract = await collectionContract.isApprovedForAll(account, nftMarketContract.address)
+        // return approvedForContract
       } catch (error) {
-        return false
+        // return false
       }
     },
     onApprove: () => {
-      return callWithGasPrice(collectionContract, 'setApprovalForAll', [nftMarketContract.address, true])
+      // return callWithGasPrice(collectionContract, 'setApprovalForAll', [nftMarketContract.address, true])
     },
-    onApproveSuccess: async ({ receipt }) => {
-      toastSuccess(
-        t('Contract approved - you can now put your NFT for sale!'),
-        <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
-      )
+    onApproveSuccess: async () => {
+      // toastSuccess(
+      //   t('Contract approved - you can now put your NFT for sale!'),
+      //   <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
+      // )
     },
     onConfirm: () => {
       if (stage === SellingStage.CONFIRM_REMOVE_FROM_MARKET) {
-        return callWithGasPrice(nftMarketContract, 'cancelAskOrder', [nftToSell.collectionAddress, nftToSell.tokenId])
+        // return callWithGasPrice(nftMarketContract, 'cancelAskOrder', [nftToSell.collectionAddress, nftToSell.tokenId])
       }
       if (stage === SellingStage.CONFIRM_TRANSFER) {
-        return callWithGasPrice(collectionContract, 'safeTransferFrom(address,address,uint256)', [
-          account,
-          transferAddress,
-          nftToSell.tokenId,
-        ])
+        // return callWithGasPrice(collectionContract, 'safeTransferFrom(address,address,uint256)', [
+        //   account,
+        //   transferAddress,
+        //   nftToSell.tokenId,
+        // ])
       }
       const methodName = variant === 'sell' ? 'createAskOrder' : 'modifyAskOrder'
       const askPrice = parseUnits(price)
-      return callWithGasPrice(nftMarketContract, methodName, [nftToSell.collectionAddress, nftToSell.tokenId, askPrice])
+      // return callWithGasPrice(nftMarketContract, methodName, [nftToSell.collectionAddress, nftToSell.tokenId, askPrice])
     },
-    onSuccess: async ({ receipt }) => {
-      toastSuccess(getToastText(variant, stage, t), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
+    onSuccess: async () => {
+      // toastSuccess(getToastText(variant, stage, t), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
       dispatchSuccessAction()
-      setConfirmedTxHash(receipt.transactionHash)
+      // setConfirmedTxHash(receipt.transactionHash)
       setStage(SellingStage.TX_CONFIRMED)
     },
   })

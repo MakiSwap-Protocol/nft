@@ -15,7 +15,7 @@ import { getNftApi, getNftsMarketData } from 'state/nftMarket/helpers'
 import { useTranslation } from 'contexts/Localization'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'
-import { REQUEST_SIZE } from '../config'
+import REQUEST_SIZE from '../config'
 
 const Grid = styled.div`
   display: grid;

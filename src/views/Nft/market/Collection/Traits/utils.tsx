@@ -5,7 +5,7 @@ type sortBuilder = {
   raritySort: string
 }
 
-export const sortBunniesByRarityBuilder =
+const sortBunniesByRarityBuilder =
   ({ raritySort, data }: sortBuilder) =>
   (bunnyIdA, bunnyIdB) => {
     const bunnyCountA = data.attributesDistribution[bunnyIdA] ?? 0
@@ -13,3 +13,5 @@ export const sortBunniesByRarityBuilder =
 
     return raritySort === 'asc' ? bunnyCountA - bunnyCountB : bunnyCountB - bunnyCountA
   }
+
+export default sortBunniesByRarityBuilder

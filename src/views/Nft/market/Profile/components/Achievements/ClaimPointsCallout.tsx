@@ -3,7 +3,7 @@ import { sumBy } from 'lodash'
 import { useAppDispatch } from 'state'
 import { useWeb3React } from '@web3-react/core'
 import { Card, CardBody, CardHeader, Flex, Heading, PrizeIcon } from 'maki-toolkit'
-import { useProfile } from 'state/profile/hooks'
+// import { useProfile } from 'state/profile/hooks'
 import { Achievement } from 'state/types'
 import { addPoints } from 'state/profile'
 import { addAchievement } from 'state/achievements'
@@ -15,7 +15,7 @@ const ClaimPointsCallout = () => {
   const [claimableAchievements, setClaimableAchievement] = useState<Achievement[]>([])
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
-  const { profile } = useProfile()
+  // const { profile } = useProfile()
   const { account } = useWeb3React()
 
   useEffect(() => {
@@ -38,9 +38,9 @@ const ClaimPointsCallout = () => {
     )
   }
 
-  if (!profile?.isActive) {
-    return null
-  }
+  // if (!profile?.isActive) {
+  //   return null
+  // }
 
   if (claimableAchievements.length === 0) {
     return null

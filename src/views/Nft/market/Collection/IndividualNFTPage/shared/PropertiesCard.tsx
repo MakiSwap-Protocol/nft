@@ -54,7 +54,10 @@ const PropertiesCard: React.FC<PropertiesCardProps> = ({ properties, rarity }) =
   )
   return <ExpandableCard
     title={t('Properties')}
-    // icon={<NftIcon width="24px" height="24px" />}
+    icon={
+      <div />
+      // <NftIcon width="24px" height="24px" />
+    }
     content={content} />
 }
 

@@ -41,13 +41,13 @@ const Items = () => {
     <>
       <Header collection={collection} />
       {isPBCollection ? (
-        <Container mb="24px">
+        <Container>
           <Flex alignItems="center" justifyContent={['flex-start', null, null, 'flex-end']} mb="24px">
             <Box minWidth="165px">
               <Text fontSize="12px" textTransform="uppercase" color="textSubtle" fontWeight={600} mb="4px">
                 {t('Sort By')}
               </Text>
-              <Select options={sortByItems} onOptionChange={handleChange} />
+              <Select options={sortByItems} onChange={handleChange} />
             </Box>
           </Flex>
           <PancakeBunniesCollectionNfts collection={collection} sortBy={sortBy} />

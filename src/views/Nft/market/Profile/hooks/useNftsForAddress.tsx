@@ -12,22 +12,22 @@ const useNftsForAddress = (account: string, profile: Profile, isProfileFetching:
 
   const hasProfileNft = profile?.tokenId
   const profileNftTokenId = profile?.tokenId?.toString()
-  const profileNftCollectionAddress = profile?.collectionAddress
+  // const profileNftCollectionAddress = profile?.collectionAddress
 
   const profileNftWithCollectionAddress = useMemo(() => {
     if (hasProfileNft) {
       return {
         tokenId: profileNftTokenId,
-        collectionAddress: profileNftCollectionAddress,
+        // collectionAddress: profileNftCollectionAddress,
         nftLocation: NftLocation.PROFILE,
       }
     }
     return null
-  }, [profileNftTokenId, profileNftCollectionAddress, hasProfileNft])
+  }, [profileNftTokenId, hasProfileNft])
 
   useEffect(() => {
     const getNfts = async () => {
-      const completeNftData = await getCompleteAccountNftData(account, collections, profileNftWithCollectionAddress)
+      const completeNftData = await getCompleteAccountNftData(account, collections, null)
       setCombinedNfts(completeNftData)
       setIsLoading(false)
     }

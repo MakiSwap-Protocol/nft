@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, CardBody, Flex, Text } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import PreviewImage from './PreviewImage'
 import { CostLabel, LowestPriceMetaRow, MetaRow } from './styles'
 import LocationTag from './LocationTag'
@@ -12,7 +12,7 @@ import { pancakeBunniesAddress } from '../../constants'
 const CollectibleCardBody: React.FC<CollectibleCardProps> = ({ nft, nftLocation, currentAskPrice, isUserNft }) => {
   const { t } = useTranslation()
   const { name, image } = nft
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
   const isPancakeBunny = nft.collectionAddress?.toLowerCase() === pancakeBunniesAddress.toLowerCase()
   const { isFetching, lowestPrice } = useGetLowestPriceFromNft(nft)
 
@@ -31,14 +31,14 @@ const CollectibleCardBody: React.FC<CollectibleCardProps> = ({ nft, nftLocation,
         {name}
       </Text>
       <Box borderTop="1px solid" borderTopColor="cardBorder" pt="8px">
-        {isPancakeBunny && (
+        {/* {isPancakeBunny && (
           <LowestPriceMetaRow lowestPrice={lowestPrice} isFetching={isFetching} bnbBusdPrice={bnbBusdPrice} />
         )}
         {currentAskPrice && (
           <MetaRow title={isUserNft ? t('Your price') : t('Asking price')}>
             <CostLabel cost={currentAskPrice} bnbBusdPrice={bnbBusdPrice} />
           </MetaRow>
-        )}
+        )} */}
       </Box>
     </CardBody>
   )

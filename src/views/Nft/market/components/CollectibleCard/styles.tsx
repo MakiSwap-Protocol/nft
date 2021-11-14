@@ -12,7 +12,7 @@ import {
 import { WalletFilledIcon } from 'components/Svg'
 import { Price } from 'maki-sdk'
 import { useTranslation } from 'contexts/Localization'
-import { multiplyPriceByAmount } from 'utils/prices'
+// import { multiplyPriceByAmount } from 'utils/prices'
 import styled from 'styled-components'
 
 export const Footer: React.FC<BoxProps> = ({ children, ...props }) => (
@@ -43,16 +43,16 @@ interface CostLabelProps extends FlexProps {
 }
 
 export const CostLabel: React.FC<CostLabelProps> = ({ cost, bnbBusdPrice, ...props }) => {
-  const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, cost)
+  // const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, cost)
 
   return (
     <Flex alignItems="center" {...props}>
-      {priceInUsd > 0 && (
+      {/* {priceInUsd > 0 && (
         <Text fontSize="12px" color="textSubtle">{`($${priceInUsd.toLocaleString(undefined, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         })})`}</Text>
-      )}
+      )} */}
       <BNBAmountLabel amount={cost} />
     </Flex>
   )

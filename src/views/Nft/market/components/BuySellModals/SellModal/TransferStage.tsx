@@ -87,7 +87,9 @@ const TransferStage: React.FC<TransferStageProps> = ({
             </Text>
           ))}
       </GreyedOutContainer>
-      <Grid gridTemplateColumns="32px 1fr" p="16px" maxWidth="360px">
+      <Grid
+        // gridTemplateColumns="32px 1fr" p="16px" maxWidth="360px"
+      >
         <Flex alignSelf="flex-start">
           <ErrorIcon width={24} height={24} color="textSubtle" />
         </Flex>

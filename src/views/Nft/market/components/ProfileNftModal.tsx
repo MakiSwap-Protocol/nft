@@ -23,7 +23,7 @@ const Grid = styled.div`
 `
 
 const TextWrapper = styled(Flex)`
-  background-color: ${({ theme }) => theme.colors.dropdown};
+  background-color: ${({ theme }) => theme.colors.primaryBright};
 `
 
 interface ProfileNftModalProps extends InjectedModalProps {

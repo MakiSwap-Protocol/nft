@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Modal, Flex, Text, BinanceIcon, Skeleton } from 'maki-toolkit'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { BuyingStage } from './types'
 
@@ -44,7 +44,7 @@ interface BnbAmountCellProps {
 }
 
 export const BnbAmountCell: React.FC<BnbAmountCellProps> = ({ bnbAmount, isLoading, isInsufficient }) => {
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
   if (isLoading) {
     return (
       <Flex flexDirection="column" justifySelf="flex-end">
@@ -53,7 +53,7 @@ export const BnbAmountCell: React.FC<BnbAmountCellProps> = ({ bnbAmount, isLoadi
       </Flex>
     )
   }
-  const usdAmount = multiplyPriceByAmount(bnbBusdPrice, bnbAmount)
+  // const usdAmount = multiplyPriceByAmount(bnbBusdPrice, bnbAmount)
   return (
     <Flex justifySelf="flex-end" flexDirection="column">
       <Flex justifyContent="flex-end">
@@ -64,10 +64,10 @@ export const BnbAmountCell: React.FC<BnbAmountCellProps> = ({ bnbAmount, isLoadi
         })}`}</Text>
       </Flex>
       <Text small color="textSubtle" textAlign="right">
-        {`($${usdAmount.toLocaleString(undefined, {
+        {/* {`($${usdAmount.toLocaleString(undefined, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
-        })})`}
+        })})`} */}
       </Text>
     </Flex>
   )

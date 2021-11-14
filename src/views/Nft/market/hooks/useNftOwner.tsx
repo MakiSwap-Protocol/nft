@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useErc721CollectionContract } from 'hooks/useContract'
+// import { useErc721CollectionContract } from 'hooks/useContract'
 import { NftToken } from 'state/nftMarket/types'
 
 const NOT_ON_SALE_SELLER = '0x0000000000000000000000000000000000000000'
@@ -7,15 +7,15 @@ const NOT_ON_SALE_SELLER = '0x0000000000000000000000000000000000000000'
 const useNftOwner = (nft: NftToken) => {
   const [owner, setOwner] = useState(null)
   const [isLoadingOwner, setIsLoadingOwner] = useState(true)
-  const collectionContract = useErc721CollectionContract(nft.collectionAddress)
+  // const collectionContract = useErc721CollectionContract(nft.collectionAddress)
   const currentSeller = nft.marketData?.currentSeller
   const { tokenId } = nft
 
   useEffect(() => {
     const getOwner = async () => {
       try {
-        const tokenOwner = await collectionContract.ownerOf(tokenId)
-        setOwner(tokenOwner)
+        // const tokenOwner = await collectionContract.ownerOf(tokenId)
+        // setOwner(tokenOwner)
       } catch (error) {
         setOwner(null)
       } finally {
@@ -29,7 +29,7 @@ const useNftOwner = (nft: NftToken) => {
     } else {
       getOwner()
     }
-  }, [currentSeller, collectionContract, tokenId])
+  }, [currentSeller, tokenId])
 
   return { owner, isLoadingOwner }
 }

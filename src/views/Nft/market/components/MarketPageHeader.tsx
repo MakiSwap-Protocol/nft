@@ -1,8 +1,8 @@
 import React from 'react'
-import PageHeader, { PageHeaderProps } from 'components/PageHeader'
+import PageHeader from 'components/PageHeader'
 import useTheme from 'hooks/useTheme'
 
-const MarketPageHeader: React.FC<PageHeaderProps> = (props) => {
+const MarketPageHeader: React.FC = (props) => {
   const { theme } = useTheme()
   const background = theme.isDark
     ? 'linear-gradient(166.77deg, #3B4155 0%, #3A3045 100%)'

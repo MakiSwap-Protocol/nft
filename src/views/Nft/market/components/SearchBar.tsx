@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import AddressInputSelect from 'components/AddressInputSelect'
+// import AddressInputSelect from 'components/AddressInputSelect'
 import { nftsBaseUrl } from 'views/Nft/market/constants'
 
 const SearchBar: React.FC = (props) => {
@@ -10,7 +10,8 @@ const SearchBar: React.FC = (props) => {
     history.push(`${nftsBaseUrl}/profile/${value}`)
   }
 
-  return <AddressInputSelect onAddressClick={handleAddressClick} {...props} />
+  // return <AddressInputSelect onAddressClick={handleAddressClick} {...props} />
+  return <div />
 }
 
 export default SearchBar

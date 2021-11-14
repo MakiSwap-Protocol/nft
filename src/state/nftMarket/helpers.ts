@@ -1,11 +1,11 @@
-import { request, gql } from 'graphql-request'
-import { stringify } from 'qs'
-import { GRAPH_API_NFTMARKET, API_NFT } from 'config/constants/endpoints'
-import { getErc721Contract } from 'utils/contractHelpers'
-import { ethers } from 'ethers'
-import map from 'lodash/map'
-import { uniq } from 'lodash'
-import { pancakeBunniesAddress } from 'views/Nft/market/constants'
+import { request, gql } from "graphql-request";
+import { stringify } from "qs";
+import { GRAPH_API_NFTMARKET, API_NFT } from "config/constants/endpoints";
+import { getErc721Contract } from "utils/contractHelpers";
+import { ethers } from "ethers";
+import map from "lodash/map";
+import { uniq } from "lodash";
+import { pancakeBunniesAddress } from "views/Nft/market/constants";
 import {
   TokenMarketData,
   ApiCollections,
@@ -22,8 +22,12 @@ import {
   ApiSingleTokenData,
   NftAttribute,
   ApiTokenFilterResponse,
-} from './types'
-import { getBaseNftFields, getBaseTransactionFields, getCollectionBaseFields } from './queries'
+} from "./types";
+import {
+  getBaseNftFields,
+  getBaseTransactionFields,
+  getCollectionBaseFields,
+} from "./queries";
 
 /**
  * API HELPERS
@@ -34,28 +38,33 @@ import { getBaseNftFields, getBaseTransactionFields, getCollectionBaseFields } f
  * @returns
  */
 export const getCollectionsApi = async (): Promise<ApiCollection[]> => {
-  const res = await fetch(`${API_NFT}/collections`)
+  const res = await fetch(`${API_NFT}/collections`);
   if (res.ok) {
-    const json = await res.json()
-    return json.data
+    const json = await res.json();
+    return json.data;
   }
-  console.error('Failed to fetch NFT collections', res.statusText)
-  return []
-}
+  console.error("Failed to fetch NFT collections", res.statusText);
+  return [];
+};
 
 /**
  * Fetch static data from a collection using the API
  * @returns
  */
-export const getCollectionApi = async (collectionAddress: string): Promise<ApiCollection> => {
-  const res = await fetch(`${API_NFT}/collections/${collectionAddress}`)
+export const getCollectionApi = async (
+  collectionAddress: string
+): Promise<ApiCollection> => {
+  const res = await fetch(`${API_NFT}/collections/${collectionAddress}`);
   if (res.ok) {
-    const json = await res.json()
-    return json.data
+    const json = await res.json();
+    return json.data;
   }
-  console.error(`API: Failed to fetch NFT collection ${collectionAddress}`, res.statusText)
-  return null
-}
+  console.error(
+    `API: Failed to fetch NFT collection ${collectionAddress}`,
+    res.statusText
+  );
+  return null;
+};
 
 /**
  * Fetch static data for all nfts in a collection using the API
@@ -67,21 +76,25 @@ export const getCollectionApi = async (collectionAddress: string): Promise<ApiCo
 export const getNftsFromCollectionApi = async (
   collectionAddress: string,
   size = 100,
-  page = 1,
+  page = 1
 ): Promise<ApiResponseCollectionTokens> => {
-  const isPBCollection = collectionAddress.toLowerCase() === pancakeBunniesAddress.toLowerCase()
+  const isPBCollection =
+    collectionAddress.toLowerCase() === pancakeBunniesAddress.toLowerCase();
   const requestPath = `${API_NFT}/collections/${collectionAddress}/tokens${
     !isPBCollection ? `?page=${page}&size=${size}` : ``
-  }`
+  }`;
 
-  const res = await fetch(requestPath)
+  const res = await fetch(requestPath);
   if (res.ok) {
-    const data = await res.json()
-    return data
+    const data = await res.json();
+    return data;
   }
-  console.error(`API: Failed to fetch NFT tokens for ${collectionAddress} collection`, res.statusText)
-  return null
-}
+  console.error(
+    `API: Failed to fetch NFT tokens for ${collectionAddress} collection`,
+    res.statusText
+  );
+  return null;
+};
 
 /**
  * Fetch a single NFT using the API
@@ -91,17 +104,22 @@ export const getNftsFromCollectionApi = async (
  */
 export const getNftApi = async (
   collectionAddress: string,
-  tokenId: string,
-): Promise<ApiResponseSpecificToken['data']> => {
-  const res = await fetch(`${API_NFT}/collections/${collectionAddress}/tokens/${tokenId}`)
+  tokenId: string
+): Promise<ApiResponseSpecificToken["data"]> => {
+  const res = await fetch(
+    `${API_NFT}/collections/${collectionAddress}/tokens/${tokenId}`
+  );
   if (res.ok) {
-    const json = await res.json()
-    return json.data
+    const json = await res.json();
+    return json.data;
   }
 
-  console.error(`API: Can't fetch NFT token ${tokenId} in ${collectionAddress}`, res.status)
-  return null
-}
+  console.error(
+    `API: Can't fetch NFT token ${tokenId} in ${collectionAddress}`,
+    res.status
+  );
+  return null;
+};
 
 /**
  * Fetch a list of NFT from different collections
@@ -109,10 +127,12 @@ export const getNftApi = async (
  * @returns Array of NFT from API
  */
 export const getNftsFromDifferentCollectionsApi = async (
-  from: { collectionAddress: string; tokenId: string }[],
+  from: { collectionAddress: string; tokenId: string }[]
 ): Promise<NftToken[]> => {
-  const promises = from.map((nft) => getNftApi(nft.collectionAddress, nft.tokenId))
-  const responses = await Promise.all(promises)
+  const promises = from.map((nft) =>
+    getNftApi(nft.collectionAddress, nft.tokenId)
+  );
+  const responses = await Promise.all(promises);
   // Sometimes API can't find some tokens (e.g. 404 response)
   // at least return the ones that returned successfully
   return responses
@@ -130,8 +150,8 @@ export const getNftsFromDifferentCollectionsApi = async (
         original: res.image?.original,
         thumbnail: res.image?.thumbnail,
       },
-    }))
-}
+    }));
+};
 
 /**
  * SUBGRAPH HELPERS
@@ -141,7 +161,9 @@ export const getNftsFromDifferentCollectionsApi = async (
  * Fetch market data from a collection using the Subgraph
  * @returns
  */
-export const getCollectionSg = async (collectionAddress: string): Promise<CollectionMarketDataBaseFields> => {
+export const getCollectionSg = async (
+  collectionAddress: string
+): Promise<CollectionMarketDataBaseFields> => {
   try {
     const res = await request(
       GRAPH_API_NFTMARKET,
@@ -152,20 +174,22 @@ export const getCollectionSg = async (collectionAddress: string): Promise<Collec
           }
         }
       `,
-      { collectionAddress: collectionAddress.toLowerCase() },
-    )
-    return res.collection
+      { collectionAddress: collectionAddress.toLowerCase() }
+    );
+    return res.collection;
   } catch (error) {
-    console.error('Failed to fetch collection', error)
-    return null
+    console.error("Failed to fetch collection", error);
+    return null;
   }
-}
+};
 
 /**
  * Fetch market data from all collections using the Subgraph
  * @returns
  */
-export const getCollectionsSg = async (): Promise<CollectionMarketDataBaseFields[]> => {
+export const getCollectionsSg = async (): Promise<
+  CollectionMarketDataBaseFields[]
+> => {
   try {
     const res = await request(
       GRAPH_API_NFTMARKET,
@@ -175,14 +199,14 @@ export const getCollectionsSg = async (): Promise<CollectionMarketDataBaseFields
             ${getCollectionBaseFields()}
           }
         }
-      `,
-    )
-    return res.collections
+      `
+    );
+    return res.collections;
   } catch (error) {
-    console.error('Failed to fetch NFT collections', error)
-    return []
+    console.error("Failed to fetch NFT collections", error);
+    return [];
   }
-}
+};
 
 /**
  * Fetch market data for nfts in a collection using the Subgraph
@@ -194,10 +218,11 @@ export const getCollectionsSg = async (): Promise<CollectionMarketDataBaseFields
 export const getNftsFromCollectionSg = async (
   collectionAddress: string,
   first = 1000,
-  skip = 0,
+  skip = 0
 ): Promise<TokenMarketData[]> => {
   // Squad to be sorted by tokenId as this matches the order of the paginated API return. For PBs - get the most recent,
-  const isPBCollection = collectionAddress.toLowerCase() === pancakeBunniesAddress.toLowerCase()
+  const isPBCollection =
+    collectionAddress.toLowerCase() === pancakeBunniesAddress.toLowerCase();
 
   try {
     const res = await request(
@@ -206,20 +231,22 @@ export const getNftsFromCollectionSg = async (
         query getNftCollectionMarketData($collectionAddress: String!) {
           collection(id: $collectionAddress) {
             id
-            nfts(orderBy:${isPBCollection ? 'updatedAt' : 'tokenId'}, skip: $skip, first: $first) {
+            nfts(orderBy:${
+              isPBCollection ? "updatedAt" : "tokenId"
+            }, skip: $skip, first: $first) {
              ${getBaseNftFields()}
             }
           }
         }
       `,
-      { collectionAddress: collectionAddress.toLowerCase(), skip, first },
-    )
-    return res.collection.nfts
+      { collectionAddress: collectionAddress.toLowerCase(), skip, first }
+    );
+    return res.collection.nfts;
   } catch (error) {
-    console.error('Failed to fetch NFTs from collection', error)
-    return []
+    console.error("Failed to fetch NFTs from collection", error);
+    return [];
   }
-}
+};
 
 /**
  * Fetch market data for PancakeBunnies NFTs by bunny id using the Subgraph
@@ -230,13 +257,17 @@ export const getNftsFromCollectionSg = async (
 export const getNftsByBunnyIdSg = async (
   bunnyId: string,
   existingTokenIds: string[],
-  orderDirection: 'asc' | 'desc',
+  orderDirection: "asc" | "desc"
 ): Promise<TokenMarketData[]> => {
   try {
     const where =
       existingTokenIds.length > 0
-        ? { otherId: bunnyId, isTradable: true, tokenId_not_in: existingTokenIds }
-        : { otherId: bunnyId, isTradable: true }
+        ? {
+            otherId: bunnyId,
+            isTradable: true,
+            tokenId_not_in: existingTokenIds,
+          }
+        : { otherId: bunnyId, isTradable: true };
     const res = await request(
       GRAPH_API_NFTMARKET,
       gql`
@@ -250,14 +281,17 @@ export const getNftsByBunnyIdSg = async (
         collectionAddress: pancakeBunniesAddress.toLowerCase(),
         where,
         orderDirection,
-      },
-    )
-    return res.nfts
+      }
+    );
+    return res.nfts;
   } catch (error) {
-    console.error(`Failed to fetch collection NFTs for bunny id ${bunnyId}`, error)
-    return []
+    console.error(
+      `Failed to fetch collection NFTs for bunny id ${bunnyId}`,
+      error
+    );
+    return [];
   }
-}
+};
 
 /**
  * Fetch market data for PancakeBunnies NFTs by bunny id using the Subgraph
@@ -267,11 +301,11 @@ export const getNftsByBunnyIdSg = async (
  */
 export const getMarketDataForTokenIds = async (
   collectionAddress: string,
-  existingTokenIds: string[],
+  existingTokenIds: string[]
 ): Promise<TokenMarketData[]> => {
   try {
     if (existingTokenIds.length === 0) {
-      return []
+      return [];
     }
     const res = await request(
       GRAPH_API_NFTMARKET,
@@ -288,21 +322,21 @@ export const getMarketDataForTokenIds = async (
       {
         collectionAddress: collectionAddress.toLowerCase(),
         where: { tokenId_in: existingTokenIds },
-      },
-    )
-    return res.collection.nfts
+      }
+    );
+    return res.collection.nfts;
   } catch (error) {
-    console.error(`Failed to fetch market data for NFTs stored tokens`, error)
-    return []
+    console.error(`Failed to fetch market data for NFTs stored tokens`, error);
+    return [];
   }
-}
+};
 
 export const getNftsMarketData = async (
   where = {},
   first = 1000,
-  orderBy = 'id',
-  orderDirection: 'asc' | 'desc' = 'desc',
-  skip = 0,
+  orderBy = "id",
+  orderDirection: "asc" | "desc" = "desc",
+  skip = 0
 ): Promise<TokenMarketData[]> => {
   try {
     const res = await request(
@@ -317,78 +351,91 @@ export const getNftsMarketData = async (
           }
         }
       `,
-      { where, first, skip, orderBy, orderDirection },
-    )
+      { where, first, skip, orderBy, orderDirection }
+    );
 
-    return res.nfts
+    return res.nfts;
   } catch (error) {
-    console.error('Failed to fetch NFTs market data', error)
-    return []
+    console.error("Failed to fetch NFTs market data", error);
+    return [];
   }
-}
+};
 
-export const getAllPancakeBunniesLowestPrice = async (bunnyIds: string[]): Promise<Record<string, number>> => {
+export const getAllPancakeBunniesLowestPrice = async (
+  bunnyIds: string[]
+): Promise<Record<string, number>> => {
   try {
     const singlePancakeBunnySubQueries = bunnyIds.map(
       (
-        bunnyId,
+        bunnyId
       ) => `b${bunnyId}:nfts(first: 1, where: { otherId: ${bunnyId}, isTradable: true }, orderBy: currentAskPrice, orderDirection: asc) {
         currentAskPrice
       }
-    `,
-    )
-    const rawResponse: Record<string, { currentAskPrice: string }[]> = await request(
-      GRAPH_API_NFTMARKET,
-      gql`
+    `
+    );
+    const rawResponse: Record<string, { currentAskPrice: string }[]> =
+      await request(
+        GRAPH_API_NFTMARKET,
+        gql`
         query getAllPancakeBunniesLowestPrice {
           ${singlePancakeBunnySubQueries}
         }
-      `,
-    )
+      `
+      );
     return Object.keys(rawResponse).reduce((lowestPricesData, subQueryKey) => {
-      const bunnyId = subQueryKey.split('b')[1]
+      const bunnyId = subQueryKey.split("b")[1];
       return {
         ...lowestPricesData,
         [bunnyId]:
-          rawResponse[subQueryKey].length > 0 ? parseFloat(rawResponse[subQueryKey][0].currentAskPrice) : Infinity,
-      }
-    }, {})
+          rawResponse[subQueryKey].length > 0
+            ? parseFloat(rawResponse[subQueryKey][0].currentAskPrice)
+            : Infinity,
+      };
+    }, {});
   } catch (error) {
-    console.error('Failed to fetch PancakeBunnies lowest prices', error)
-    return {}
+    console.error("Failed to fetch PancakeBunnies lowest prices", error);
+    return {};
   }
-}
+};
 
-export const getAllPancakeBunniesRecentUpdatedAt = async (bunnyIds: string[]): Promise<Record<string, number>> => {
+export const getAllPancakeBunniesRecentUpdatedAt = async (
+  bunnyIds: string[]
+): Promise<Record<string, number>> => {
   try {
     const singlePancakeBunnySubQueries = bunnyIds.map(
       (
-        bunnyId,
+        bunnyId
       ) => `b${bunnyId}:nfts(first: 1, where: { otherId: ${bunnyId}, isTradable: true }, orderBy: updatedAt, orderDirection: desc) {
         updatedAt
       }
-    `,
-    )
+    `
+    );
     const rawResponse: Record<string, { updatedAt: string }[]> = await request(
       GRAPH_API_NFTMARKET,
       gql`
         query getAllPancakeBunniesLowestPrice {
           ${singlePancakeBunnySubQueries}
         }
-      `,
-    )
+      `
+    );
     return Object.keys(rawResponse).reduce((updatedAtData, subQueryKey) => {
-      const bunnyId = subQueryKey.split('b')[1]
+      const bunnyId = subQueryKey.split("b")[1];
       return {
         ...updatedAtData,
-        [bunnyId]: rawResponse[subQueryKey].length > 0 ? Number(rawResponse[subQueryKey][0].updatedAt) : -Infinity,
-      }
-    }, {})
+        [bunnyId]:
+          rawResponse[subQueryKey].length > 0
+            ? Number(rawResponse[subQueryKey][0].updatedAt)
+            : -Infinity,
+      };
+    }, {});
   } catch (error) {
-    console.error('Failed to fetch PancakeBunnies latest market updates', error)
-    return {}
+    console.error(
+      "Failed to fetch PancakeBunnies latest market updates",
+      error
+    );
+    return {};
   }
-}
+};
 
 /**
  * Returns the lowest price of any NFT in a collection
@@ -398,21 +445,24 @@ export const getLowestPriceInCollection = async (collectionAddress: string) => {
     const response = await getNftsMarketData(
       { collection: collectionAddress.toLowerCase(), isTradable: true },
       1,
-      'currentAskPrice',
-      'asc',
-    )
+      "currentAskPrice",
+      "asc"
+    );
 
     if (response.length === 0) {
-      return 0
+      return 0;
     }
 
-    const [nftSg] = response
-    return parseFloat(nftSg.currentAskPrice)
+    const [nftSg] = response;
+    return parseFloat(nftSg.currentAskPrice);
   } catch (error) {
-    console.error(`Failed to lowest price NFTs in collection ${collectionAddress}`, error)
-    return 0
+    console.error(
+      `Failed to lowest price NFTs in collection ${collectionAddress}`,
+      error
+    );
+    return 0;
   }
-}
+};
 
 /**
  * Fetch user trading data for buyTradeHistory, sellTradeHistory and askOrderHistory from the Subgraph
@@ -420,8 +470,12 @@ export const getLowestPriceInCollection = async (collectionAddress: string) => {
  * @returns a UserActivity object
  */
 export const getUserActivity = async (
-  address: string,
-): Promise<{ askOrderHistory: AskOrder[]; buyTradeHistory: Transaction[]; sellTradeHistory: Transaction[] }> => {
+  address: string
+): Promise<{
+  askOrderHistory: AskOrder[];
+  buyTradeHistory: Transaction[];
+  sellTradeHistory: Transaction[];
+}> => {
   try {
     const res = await request(
       GRAPH_API_NFTMARKET,
@@ -453,26 +507,34 @@ export const getUserActivity = async (
           }
         }
       `,
-      { address },
-    )
+      { address }
+    );
 
-    return res.user || { askOrderHistory: [], buyTradeHistory: [], sellTradeHistory: [] }
+    return (
+      res.user || {
+        askOrderHistory: [],
+        buyTradeHistory: [],
+        sellTradeHistory: [],
+      }
+    );
   } catch (error) {
-    console.error('Failed to fetch user Activity', error)
+    console.error("Failed to fetch user Activity", error);
     return {
       askOrderHistory: [],
       buyTradeHistory: [],
       sellTradeHistory: [],
-    }
+    };
   }
-}
+};
 
 /**
  * Get the most recently listed NFTs
  * @param first Number of nfts to retrieve
  * @returns NftTokenSg[]
  */
-export const getLatestListedNfts = async (first: number): Promise<TokenMarketData[]> => {
+export const getLatestListedNfts = async (
+  first: number
+): Promise<TokenMarketData[]> => {
   try {
     const res = await request(
       GRAPH_API_NFTMARKET,
@@ -486,15 +548,15 @@ export const getLatestListedNfts = async (first: number): Promise<TokenMarketDat
           }
         }
       `,
-      { first },
-    )
+      { first }
+    );
 
-    return res.nfts
+    return res.nfts;
   } catch (error) {
-    console.error('Failed to fetch NFTs market data', error)
-    return []
+    console.error("Failed to fetch NFTs market data", error);
+    return [];
   }
-}
+};
 
 /**
  * Filter NFTs from a collection
@@ -503,54 +565,62 @@ export const getLatestListedNfts = async (first: number): Promise<TokenMarketDat
  */
 export const fetchNftsFiltered = async (
   collectionAddress: string,
-  filters: Record<string, string | number>,
+  filters: Record<string, string | number>
 ): Promise<ApiTokenFilterResponse> => {
-  const res = await fetch(`${API_NFT}/collections/${collectionAddress}/filter?${stringify(filters)}`)
+  const res = await fetch(
+    `${API_NFT}/collections/${collectionAddress}/filter?${stringify(filters)}`
+  );
 
   if (res.ok) {
-    const data = await res.json()
-    return data
+    const data = await res.json();
+    return data;
   }
 
-  console.error(`API: Failed to fetch NFT collection ${collectionAddress}`, res.statusText)
-  return null
-}
+  console.error(
+    `API: Failed to fetch NFT collection ${collectionAddress}`,
+    res.statusText
+  );
+  return null;
+};
 
 /**
  * OTHER HELPERS
  */
 
-export const getMetadataWithFallback = (apiMetadata: ApiResponseCollectionTokens['data'], bunnyId: string) => {
+export const getMetadataWithFallback = (
+  apiMetadata: ApiResponseCollectionTokens["data"],
+  bunnyId: string
+) => {
   // The fallback is just for the testnet where some bunnies don't exist
   return (
     apiMetadata[bunnyId] ?? {
-      name: '',
-      description: '',
-      collection: { name: 'Pancake Bunnies' },
+      name: "",
+      description: "",
+      collection: { name: "Pancake Bunnies" },
       image: {
-        original: '',
-        thumbnail: '',
+        original: "",
+        thumbnail: "",
       },
     }
-  )
-}
+  );
+};
 
 export const getPancakeBunniesAttributesField = (bunnyId: string) => {
   // Generating attributes field that is not returned by API
   // but can be "faked" since objects are keyed with bunny id
   return [
     {
-      traitType: 'bunnyId',
+      traitType: "bunnyId",
       value: bunnyId,
       displayType: null,
     },
-  ]
-}
+  ];
+};
 
 export const combineApiAndSgResponseToNftToken = (
   apiMetadata: ApiSingleTokenData,
   marketData: TokenMarketData,
-  attributes: NftAttribute[],
+  attributes: NftAttribute[]
 ) => {
   return {
     tokenId: marketData.tokenId,
@@ -561,88 +631,94 @@ export const combineApiAndSgResponseToNftToken = (
     image: apiMetadata.image,
     marketData,
     attributes,
-  }
-}
+  };
+};
 
 export const fetchWalletTokenIdsForCollections = async (
   account: string,
-  collections: ApiCollections,
+  collections: ApiCollections
 ): Promise<TokenIdWithCollectionAddress[]> => {
-  const walletNftPromises = map(collections, async (collection): Promise<TokenIdWithCollectionAddress[]> => {
-    const { address: collectionAddress } = collection
-    const contract = getErc721Contract(collectionAddress)
-    let balanceOfResponse
+  const walletNftPromises = map(
+    collections,
+    async (collection): Promise<TokenIdWithCollectionAddress[]> => {
+      const { address: collectionAddress } = collection;
+      const contract = getErc721Contract(collectionAddress);
+      let balanceOfResponse;
 
-    try {
-      balanceOfResponse = await contract.balanceOf(account)
-    } catch (e) {
-      console.error(e)
-      return []
-    }
-
-    const balanceOf = balanceOfResponse.toNumber()
-
-    // User has no NFTs for this collection
-    if (balanceOfResponse.eq(0)) {
-      return []
-    }
-
-    const getTokenId = async (index: number) => {
       try {
-        const tokenIdBn: ethers.BigNumber = await contract.tokenOfOwnerByIndex(account, index)
-        const tokenId = tokenIdBn.toString()
-        return tokenId
-      } catch (error) {
-        console.error('getTokenIdAndData', error)
-        return null
+        balanceOfResponse = await contract.balanceOf(account);
+      } catch (e) {
+        console.error(e);
+        return [];
       }
+
+      const balanceOf = balanceOfResponse.toNumber();
+
+      // User has no NFTs for this collection
+      if (balanceOfResponse.eq(0)) {
+        return [];
+      }
+
+      const getTokenId = async (index: number) => {
+        try {
+          const tokenIdBn: ethers.BigNumber =
+            await contract.tokenOfOwnerByIndex(account, index);
+          const tokenId = tokenIdBn.toString();
+          return tokenId;
+        } catch (error) {
+          console.error("getTokenIdAndData", error);
+          return null;
+        }
+      };
+
+      const tokenIdPromises = [];
+
+      // For each index get the tokenId
+      for (let i = 0; i < balanceOf; i++) {
+        tokenIdPromises.push(getTokenId(i));
+      }
+
+      const tokenIds = await Promise.all(tokenIdPromises);
+      const nftLocation = NftLocation.WALLET;
+      const tokensWithCollectionAddress = tokenIds.map((tokenId) => {
+        return { tokenId, collectionAddress, nftLocation };
+      });
+
+      return tokensWithCollectionAddress;
     }
+  );
 
-    const tokenIdPromises = []
-
-    // For each index get the tokenId
-    for (let i = 0; i < balanceOf; i++) {
-      tokenIdPromises.push(getTokenId(i))
-    }
-
-    const tokenIds = await Promise.all(tokenIdPromises)
-    const nftLocation = NftLocation.WALLET
-    const tokensWithCollectionAddress = tokenIds.map((tokenId) => {
-      return { tokenId, collectionAddress, nftLocation }
-    })
-
-    return tokensWithCollectionAddress
-  })
-
-  const walletNfts = await Promise.all(walletNftPromises)
-  return walletNfts.flat()
-}
+  const walletNfts = await Promise.all(walletNftPromises);
+  return walletNfts.flat();
+};
 
 /**
  * Helper to combine data from the collections' API and subgraph
  */
 export const combineCollectionData = (
   collectionApiData: ApiCollection[],
-  collectionSgData: CollectionMarketDataBaseFields[],
+  collectionSgData: CollectionMarketDataBaseFields[]
 ): Record<string, Collection> => {
-  const collectionsMarketObj: Record<string, CollectionMarketDataBaseFields> = collectionSgData.reduce(
-    (prev, current) => ({ ...prev, [current.id]: { ...current } }),
-    {},
-  )
+  const collectionsMarketObj: Record<string, CollectionMarketDataBaseFields> =
+    collectionSgData.reduce(
+      (prev, current) => ({ ...prev, [current.id]: { ...current } }),
+      {}
+    );
 
   return collectionApiData.reduce((accum, current) => {
-    const collectionMarket = collectionsMarketObj[current.address.toLowerCase()]
+    const collectionMarket =
+      collectionsMarketObj[current.address.toLowerCase()];
     const collection: Collection = {
       ...current,
       ...collectionMarket,
-    }
+    };
 
     return {
       ...accum,
       [current.address]: collection,
-    }
-  }, {})
-}
+    };
+  }, {});
+};
 
 /**
  * Evaluate whether a market NFT is in a users wallet, their profile picture, or on sale
@@ -656,20 +732,22 @@ export const getNftLocationForMarketNft = (
   tokenId: string,
   tokenIdsInWallet: string[],
   tokenIdsForSale: string[],
-  profileNftId?: string,
+  profileNftId?: string
 ): NftLocation => {
   if (tokenId === profileNftId) {
-    return NftLocation.PROFILE
+    return NftLocation.PROFILE;
   }
   if (tokenIdsForSale.includes(tokenId)) {
-    return NftLocation.FORSALE
+    return NftLocation.FORSALE;
   }
   if (tokenIdsInWallet.includes(tokenId)) {
-    return NftLocation.WALLET
+    return NftLocation.WALLET;
   }
-  console.error(`Cannot determine location for tokenID ${tokenId}, defaulting to NftLocation.WALLET`)
-  return NftLocation.WALLET
-}
+  console.error(
+    `Cannot determine location for tokenID ${tokenId}, defaulting to NftLocation.WALLET`
+  );
+  return NftLocation.WALLET;
+};
 
 /**
  * Construct complete TokenMarketData entities with a users' wallet NFT ids and market data for their wallet NFTs
@@ -679,14 +757,15 @@ export const getNftLocationForMarketNft = (
  */
 export const attachMarketDataToWalletNfts = (
   walletNfts: TokenIdWithCollectionAddress[],
-  marketDataForWalletNfts: TokenMarketData[],
+  marketDataForWalletNfts: TokenMarketData[]
 ): TokenMarketData[] => {
   const walletNftsWithMarketData = walletNfts.map((walletNft) => {
     const marketData = marketDataForWalletNfts.find(
       (marketNft) =>
         marketNft.tokenId === walletNft.tokenId &&
-        marketNft.collection.id.toLowerCase() === walletNft.collectionAddress.toLowerCase(),
-    )
+        marketNft.collection.id.toLowerCase() ===
+          walletNft.collectionAddress.toLowerCase()
+    );
     return (
       marketData ?? {
         tokenId: walletNft.tokenId,
@@ -704,10 +783,10 @@ export const attachMarketDataToWalletNfts = (
         totalTrades: null,
         otherId: null,
       }
-    )
-  })
-  return walletNftsWithMarketData
-}
+    );
+  });
+  return walletNftsWithMarketData;
+};
 
 /**
  * Attach TokenMarketData and location to NftToken
@@ -725,22 +804,33 @@ export const combineNftMarketAndMetadata = (
   walletNfts: TokenMarketData[],
   tokenIdsInWallet: string[],
   tokenIdsForSale: string[],
-  profileNftId?: string,
+  profileNftId?: string
 ): NftToken[] => {
   const completeNftData = nftsWithMetadata.map<NftToken>((nft) => {
     // Get metadata object
-    const isOnSale = nftsForSale.filter((forSaleNft) => forSaleNft.tokenId === nft.tokenId).length > 0
-    let marketData
+    const isOnSale =
+      nftsForSale.filter((forSaleNft) => forSaleNft.tokenId === nft.tokenId)
+        .length > 0;
+    let marketData;
     if (isOnSale) {
-      marketData = nftsForSale.find((marketNft) => marketNft.tokenId === nft.tokenId)
+      marketData = nftsForSale.find(
+        (marketNft) => marketNft.tokenId === nft.tokenId
+      );
     } else {
-      marketData = walletNfts.find((marketNft) => marketNft.tokenId === nft.tokenId)
+      marketData = walletNfts.find(
+        (marketNft) => marketNft.tokenId === nft.tokenId
+      );
     }
-    const location = getNftLocationForMarketNft(nft.tokenId, tokenIdsInWallet, tokenIdsForSale, profileNftId)
-    return { ...nft, marketData, location }
-  })
-  return completeNftData
-}
+    const location = getNftLocationForMarketNft(
+      nft.tokenId,
+      tokenIdsInWallet,
+      tokenIdsForSale,
+      profileNftId
+    );
+    return { ...nft, marketData, location };
+  });
+  return completeNftData;
+};
 
 /**
  * Get in-wallet, on-sale & profile pic NFT metadata, complete with market data for a given account
@@ -752,57 +842,71 @@ export const combineNftMarketAndMetadata = (
 export const getCompleteAccountNftData = async (
   account: string,
   collections: ApiCollections,
-  profileNftWithCollectionAddress?: TokenIdWithCollectionAddress,
+  profileNftWithCollectionAddress?: TokenIdWithCollectionAddress
 ): Promise<NftToken[]> => {
-  const walletNftIdsWithCollectionAddress = await fetchWalletTokenIdsForCollections(account, collections)
+  const walletNftIdsWithCollectionAddress =
+    await fetchWalletTokenIdsForCollections(account, collections);
   if (profileNftWithCollectionAddress?.tokenId) {
-    walletNftIdsWithCollectionAddress.unshift(profileNftWithCollectionAddress)
+    walletNftIdsWithCollectionAddress.unshift(profileNftWithCollectionAddress);
   }
 
   const uniqueCollectionAddresses = uniq(
-    walletNftIdsWithCollectionAddress.map((walletNftId) => walletNftId.collectionAddress),
-  )
+    walletNftIdsWithCollectionAddress.map(
+      (walletNftId) => walletNftId.collectionAddress
+    )
+  );
 
-  const walletNftsByCollection = uniqueCollectionAddresses.map((collectionAddress) => {
-    return {
-      collectionAddress,
-      idWithCollectionAddress: walletNftIdsWithCollectionAddress.filter(
-        (walletNft) => walletNft.collectionAddress === collectionAddress,
-      ),
+  const walletNftsByCollection = uniqueCollectionAddresses.map(
+    (collectionAddress) => {
+      return {
+        collectionAddress,
+        idWithCollectionAddress: walletNftIdsWithCollectionAddress.filter(
+          (walletNft) => walletNft.collectionAddress === collectionAddress
+        ),
+      };
     }
-  })
+  );
 
-  const walletMarketDataRequests = walletNftsByCollection.map((walletNftByCollection) => {
-    const tokenIdIn = walletNftByCollection.idWithCollectionAddress.map((walletNft) => walletNft.tokenId)
-    return getNftsMarketData({
-      tokenId_in: tokenIdIn,
-      collection: walletNftByCollection.collectionAddress.toLowerCase(),
-    })
-  })
+  const walletMarketDataRequests = walletNftsByCollection.map(
+    (walletNftByCollection) => {
+      const tokenIdIn = walletNftByCollection.idWithCollectionAddress.map(
+        (walletNft) => walletNft.tokenId
+      );
+      return getNftsMarketData({
+        tokenId_in: tokenIdIn,
+        collection: walletNftByCollection.collectionAddress.toLowerCase(),
+      });
+    }
+  );
 
-  const walletMarketDataResponses = await Promise.all(walletMarketDataRequests)
-  const walletMarketData = walletMarketDataResponses.flat()
+  const walletMarketDataResponses = await Promise.all(walletMarketDataRequests);
+  const walletMarketData = walletMarketDataResponses.flat();
 
-  const walletNftsWithMarketData = attachMarketDataToWalletNfts(walletNftIdsWithCollectionAddress, walletMarketData)
+  const walletNftsWithMarketData = attachMarketDataToWalletNfts(
+    walletNftIdsWithCollectionAddress,
+    walletMarketData
+  );
 
   const walletTokenIds = walletNftIdsWithCollectionAddress
     .filter((walletNft) => {
       // Profile Pic NFT is no longer wanted in this array, hence the filter
-      return profileNftWithCollectionAddress?.tokenId !== walletNft.tokenId
+      return profileNftWithCollectionAddress?.tokenId !== walletNft.tokenId;
     })
-    .map((nft) => nft.tokenId)
+    .map((nft) => nft.tokenId);
 
-  const marketDataForSaleNfts = await getNftsMarketData({ currentSeller: account.toLowerCase() })
-  const tokenIdsForSale = marketDataForSaleNfts.map((nft) => nft.tokenId)
+  const marketDataForSaleNfts = await getNftsMarketData({
+    currentSeller: account.toLowerCase(),
+  });
+  const tokenIdsForSale = marketDataForSaleNfts.map((nft) => nft.tokenId);
 
   const forSaleNftIds = marketDataForSaleNfts.map((nft) => {
-    return { collectionAddress: nft.collection.id, tokenId: nft.tokenId }
-  })
+    return { collectionAddress: nft.collection.id, tokenId: nft.tokenId };
+  });
 
   const metadataForAllNfts = await getNftsFromDifferentCollectionsApi([
     ...forSaleNftIds,
     ...walletNftIdsWithCollectionAddress,
-  ])
+  ]);
 
   const completeNftData = combineNftMarketAndMetadata(
     metadataForAllNfts,
@@ -810,22 +914,29 @@ export const getCompleteAccountNftData = async (
     walletNftsWithMarketData,
     walletTokenIds,
     tokenIdsForSale,
-    profileNftWithCollectionAddress?.tokenId,
-  )
+    profileNftWithCollectionAddress?.tokenId
+  );
 
-  return completeNftData
-}
+  return completeNftData;
+};
 
 /**
  * Fetch distribution information for a collection
  * @returns
  */
-export const getCollectionDistributionApi = async <T>(collectionAddress: string): Promise<T> => {
-  const res = await fetch(`${API_NFT}/collections/${collectionAddress}/distribution`)
+export const getCollectionDistributionApi = async <T>(
+  collectionAddress: string
+): Promise<T> => {
+  const res = await fetch(
+    `${API_NFT}/collections/${collectionAddress}/distribution`
+  );
   if (res.ok) {
-    const data = await res.json()
-    return data
+    const data = await res.json();
+    return data;
   }
-  console.error(`API: Failed to fetch NFT collection ${collectionAddress} distribution`, res.statusText)
-  return null
-}
+  console.error(
+    `API: Failed to fetch NFT collection ${collectionAddress} distribution`,
+    res.statusText
+  );
+  return null;
+};

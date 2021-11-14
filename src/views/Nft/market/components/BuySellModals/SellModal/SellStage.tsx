@@ -6,7 +6,7 @@ import { nftsBaseUrl, pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { NftToken } from 'state/nftMarket/types'
 import { getHuobiScanLinkForNft } from 'utils'
 import EditProfileModal from 'views/Nft/market/Profile/components/EditProfileModal'
-import { useProfile } from 'state/profile/hooks'
+// import { useProfile } from 'state/profile/hooks'
 import { Divider, HorizontalDivider, RoundedImage } from '../shared/styles'
 
 const Grid = styled.div`
@@ -28,7 +28,7 @@ const SellStage: React.FC<SellStageProps> = ({
   continueToTransferStage,
 }) => {
   const { t } = useTranslation()
-  const { hasProfile } = useProfile()
+  // const { hasProfile } = useProfile()
   const itemPageUrlId =
     nftToSell.collectionAddress.toLowerCase() === pancakeBunniesAddress.toLowerCase()
       ? nftToSell.attributes[0].value
@@ -102,11 +102,11 @@ const SellStage: React.FC<SellStageProps> = ({
         <Button mb="8px" variant="secondary" onClick={continueToTransferStage}>
           {t('Transfer')}
         </Button>
-        {hasProfile && (
+        {/* {hasProfile && (
           <Button variant="secondary" onClick={onEditProfileModal}>
             {t('Set as Profile Pic')}
           </Button>
-        )}
+        )} */}
       </Flex>
     </>
   )

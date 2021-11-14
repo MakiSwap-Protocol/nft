@@ -3,7 +3,7 @@ import { Flex, Box, Card, CardBody, Text, Button, BinanceIcon, Skeleton, useModa
 import { useTranslation } from 'contexts/Localization'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { NftToken } from 'state/nftMarket/types'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import BuyModal from '../../../components/BuySellModals/BuyModal'
 import SellModal from '../../../components/BuySellModals/SellModal'
 import { nftsBaseUrl } from '../../../constants'
@@ -21,14 +21,14 @@ const MainPancakeBunnyCard: React.FC<MainPancakeBunnyCardProps> = ({
   nothingForSaleBunny,
 }) => {
   const { t } = useTranslation()
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
 
   const nftToDisplay = cheapestNftFromOtherSellers || cheapestNft || nothingForSaleBunny
 
   const onlyOwnNftsOnSale = !cheapestNftFromOtherSellers
   const hasListings = cheapestNftFromOtherSellers || cheapestNft
 
-  const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, parseFloat(nftToDisplay.marketData?.currentAskPrice))
+  // const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, parseFloat(nftToDisplay.marketData?.currentAskPrice))
   const [onPresentBuyModal] = useModal(<BuyModal nftToBuy={nftToDisplay} />)
   const [onPresentAdjustPriceModal] = useModal(<SellModal variant="edit" nftToSell={cheapestNft} />)
 
@@ -76,14 +76,14 @@ const MainPancakeBunnyCard: React.FC<MainPancakeBunnyCardProps> = ({
                     <Text fontSize="24px" bold mr="4px">
                       {nftToDisplay.marketData.currentAskPrice}
                     </Text>
-                    {bnbBusdPrice ? (
+                    {/* {bnbBusdPrice ? (
                       <Text color="textSubtle">{`(~${priceInUsd.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })} USD)`}</Text>
                     ) : (
                       <Skeleton width="64px" />
-                    )}
+                    )} */}
                   </Flex>
                 </>
               )}

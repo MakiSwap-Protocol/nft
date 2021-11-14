@@ -6,7 +6,7 @@ import { Button, Text, Flex, Box, BinanceIcon, useModal, Skeleton } from 'maki-t
 import { formatNumber } from 'utils/formatBalance'
 import { ContextApi } from 'contexts/Localization/types'
 import { useTranslation } from 'contexts/Localization'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { NftToken } from 'state/nftMarket/types'
 import BuyModal from 'views/Nft/market/components/BuySellModals/BuyModal'
@@ -84,12 +84,12 @@ interface ForSaleTableRowsProps {
 const ForSaleTableRow: React.FC<ForSaleTableRowsProps> = ({ nftsForSale }) => {
   const { account } = useWeb3React()
   const { t } = useTranslation()
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
   return (
     <OwnersTableRow>
-      {nftsForSale.map((nft) => (
+      {/* {nftsForSale.map((nft) => (
         <Row key={nft.tokenId} t={t} nft={nft} bnbBusdPrice={bnbBusdPrice} account={account} />
-      ))}
+      ))} */}
     </OwnersTableRow>
   )
 }

@@ -20,7 +20,7 @@ import DetailsCard from '../shared/DetailsCard'
 import MoreFromThisCollection from '../shared/MoreFromThisCollection'
 import ForSaleTableCard from './ForSaleTableCard'
 import { pancakeBunniesAddress } from '../../../constants'
-import { sortNFTsByPriceBuilder } from './ForSaleTableCard/utils'
+import sortNFTsByPriceBuilder from './ForSaleTableCard/utils'
 import { SortType } from '../../../types'
 import { TwoColumnsContainer } from '../shared/styles'
 

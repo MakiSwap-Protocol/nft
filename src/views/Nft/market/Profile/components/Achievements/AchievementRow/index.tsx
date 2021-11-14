@@ -4,9 +4,9 @@ import { AutoRenewIcon, Button, Flex } from 'maki-toolkit'
 import { Achievement } from 'state/types'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'
-import { usePointCenterIfoContract } from 'hooks/useContract'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { ToastDescriptionWithTx } from 'components/Toast'
+// import { usePointCenterIfoContract } from 'hooks/useContract'
+// import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+// import { ToastDescriptionWithTx } from 'components/Toast'
 import AchievementTitle from 'views/Nft/market/Profile/components/Achievements/AchievementTitle'
 import AchievementAvatar from 'views/Nft/market/Profile/components/Achievements/AchievementAvatar'
 import AchievementDescription from 'views/Nft/market/Profile/components/Achievements/AchievementDescription'
@@ -54,21 +54,21 @@ const Body = styled(Flex)`
 const AchievementRow: React.FC<AchievementRowProps> = ({ achievement, onCollectSuccess }) => {
   const [isCollecting, setIsCollecting] = useState(false)
   const { t } = useTranslation()
-  const pointCenterContract = usePointCenterIfoContract()
+  // const pointCenterContract = usePointCenterIfoContract()
   const { toastError, toastSuccess } = useToast()
-  const { callWithGasPrice } = useCallWithGasPrice()
+  // const { callWithGasPrice } = useCallWithGasPrice()
 
   const handleCollectPoints = async () => {
     try {
-      const tx = await callWithGasPrice(pointCenterContract, 'getPoints', [achievement.address])
+      // const tx = await callWithGasPrice(pointCenterContract, 'getPoints', [achievement.address])
       setIsCollecting(true)
-      const receipt = await tx.wait()
-      if (receipt.status) {
-        onCollectSuccess(achievement)
-        toastSuccess(t('Points Collected!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
-      } else {
-        toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-      }
+      // const receipt = await tx.wait()
+      // if (receipt.status) {
+      //   onCollectSuccess(achievement)
+        // toastSuccess(t('Points Collected!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
+      // } else {
+      //   toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+      // }
     } catch (error) {
       toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
     } finally {

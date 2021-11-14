@@ -30,9 +30,9 @@ const UserNfts: React.FC<{ nfts: NftToken[]; isLoading: boolean }> = ({ nfts, is
       ) : // User has NFTs and data has been fetched
       nfts.length > 0 ? (
         <Grid
-          gridGap="16px"
-          gridTemplateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
-          alignItems="start"
+          // gridGap="16px"
+          // gridTemplateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
+          // alignItems="start"
         >
           {nfts.map((nft) => {
             const { marketData } = nft

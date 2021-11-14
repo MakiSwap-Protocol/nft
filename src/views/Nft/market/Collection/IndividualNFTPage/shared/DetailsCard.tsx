@@ -32,7 +32,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ contractAddress, ipfsJson, co
         <Text fontSize="12px" color="textSubtle" bold textTransform="uppercase">
           {t('Contract address')}
         </Text>
-        <Link external href={getEtherscanLink(contractAddress, 'address', chainId)}>
+        <Link external href={getEtherscanLink(chainId, contractAddress, 'address')}>
           <LongTextContainer bold>{contractAddress}</LongTextContainer>
         </Link>
       </Flex>

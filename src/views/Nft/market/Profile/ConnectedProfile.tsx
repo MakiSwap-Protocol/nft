@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useProfile } from 'state/profile/hooks'
+// import { useProfile } from 'state/profile/hooks'
 import { useWeb3React } from '@web3-react/core'
 import { Box } from 'maki-toolkit'
 import Page from 'components/Layout/Page'
@@ -32,8 +32,8 @@ const TabMenuWrapper = styled(Box)`
 `
 
 const ConnectedProfile = () => {
-  const { profile, isLoading: isProfileLoading } = useProfile()
-  const { achievements, achievementFetchStatus } = useAchievements()
+  // const { profile, isLoading: isProfileLoading } = useProfile()
+  // const { achievements, achievementFetchStatus } = useAchievements()
   const { account } = useWeb3React()
   const { userNftsInitializationState, nfts: userNfts } = useUserNfts()
 
@@ -42,8 +42,10 @@ const ConnectedProfile = () => {
 
   return (
     <>
-      <MarketPageHeader position="relative">
-        <ProfileHeader
+      <MarketPageHeader
+        // position="relative"
+      >
+        {/* <ProfileHeader
           accountPath={account}
           profile={profile}
           achievements={achievements}
@@ -51,18 +53,18 @@ const ConnectedProfile = () => {
           isProfileLoading={isProfileLoading}
           isNftLoading={userNftsInitializationState !== UserNftInitializationState.INITIALIZED}
           isAchievementsLoading={achievementFetchStatus !== AchievementFetchStatus.FETCHED}
-        />
+        /> */}
         <TabMenuWrapper>
           <TabMenu />
         </TabMenuWrapper>
       </MarketPageHeader>
       <Page style={{ minHeight: 'auto' }}>
         <Route path={`${nftsBaseUrl}/profile/:accountAddress/achievements`}>
-          <Achievements
+          {/* <Achievements
             achievements={achievements}
             isLoading={achievementFetchStatus !== AchievementFetchStatus.FETCHED}
             points={profile?.points}
-          />
+          /> */}
         </Route>
         <Route path={`${nftsBaseUrl}/profile/:accountAddress/activity`}>
           <SubMenu />

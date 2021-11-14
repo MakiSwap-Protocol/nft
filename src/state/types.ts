@@ -8,6 +8,7 @@ import {
   PoolConfig,
   Team,
 } from "config/constants/types";
+import { NFTMarketInitializationState } from "./nftMarket/types";
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -154,7 +155,8 @@ export interface Achievement {
 }
 
 export interface AchievementState {
-  data: Achievement[];
+  achievements: Achievement[];
+  achievementFetchStatus: AchievementFetchStatus;
 }
 
 // Block
@@ -273,13 +275,19 @@ export interface PredictionsState {
   bets: BetData;
 }
 
+export interface NFTMarketState {
+  initializationState: NFTMarketInitializationState;
+  data: any;
+}
+
 // Global state
 
 export interface State {
-  // achievements: AchievementState
+  achievements: AchievementState;
   block: BlockState;
   farms: FarmsState;
   pools: PoolsState;
+  nftMarket: NFTMarketState;
   // predictions: PredictionsState
   // profile: ProfileState // Disabled until implemented
   // teams: TeamsState

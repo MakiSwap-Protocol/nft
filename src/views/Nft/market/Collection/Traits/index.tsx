@@ -23,7 +23,7 @@ const Traits = () => {
   return (
     <>
       <Header collection={collection} />
-      <Container py="40px">
+      <Container>
         {collectionAddress === pancakeBunniesAddress ? (
           <PancakeBunniesTraits collectionAddress={collectionAddress} />
         ) : (

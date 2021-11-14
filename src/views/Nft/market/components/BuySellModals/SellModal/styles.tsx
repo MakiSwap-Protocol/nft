@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Modal, Box, Flex, Text, BinanceIcon, Input } from 'maki-toolkit'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
-import { multiplyPriceByAmount } from 'utils/prices'
-import { SellingStage } from './types'
+// import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { multiplyPriceByAmount } from 'utils/prices'
+import SellingStage from './types'
 
 export const stagesWithBackButton = [
   SellingStage.SET_PRICE,
@@ -30,7 +30,7 @@ export const StyledModal = styled(Modal)<{ stage: SellingStage }>`
 `
 
 export const GreyedOutContainer = styled(Box)`
-  background-color: ${({ theme }) => theme.colors.dropdown};
+  background-color: ${({ theme }) => theme.colors.primaryBright};
   padding: 16px;
 `
 
@@ -43,7 +43,7 @@ interface BnbAmountCellProps {
 }
 
 export const BnbAmountCell: React.FC<BnbAmountCellProps> = ({ bnbAmount }) => {
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
   if (!bnbAmount || bnbAmount === 0) {
     return (
       <Flex alignItems="center" justifyContent="flex-end">
@@ -54,7 +54,7 @@ export const BnbAmountCell: React.FC<BnbAmountCellProps> = ({ bnbAmount }) => {
       </Flex>
     )
   }
-  const usdAmount = multiplyPriceByAmount(bnbBusdPrice, bnbAmount)
+  // const usdAmount = multiplyPriceByAmount(bnbBusdPrice, bnbAmount)
   return (
     <Flex alignItems="center" justifyContent="flex-end">
       <BinanceIcon width={16} height={16} mr="4px" />
@@ -63,10 +63,10 @@ export const BnbAmountCell: React.FC<BnbAmountCellProps> = ({ bnbAmount }) => {
         maximumFractionDigits: 3,
       })}`}</Text>
       <Text small color="textSubtle" textAlign="right">
-        {`($${usdAmount.toLocaleString(undefined, {
+        {/* {`($${usdAmount.toLocaleString(undefined, {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
-        })})`}
+        })})`} */}
       </Text>
     </Flex>
   )

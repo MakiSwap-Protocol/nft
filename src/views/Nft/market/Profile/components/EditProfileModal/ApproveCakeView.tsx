@@ -3,7 +3,7 @@ import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'maki-tool
 import { useTranslation } from 'contexts/Localization'
 import { useMaki } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
-import { useProfile } from 'state/profile/hooks'
+// import { useProfile } from 'state/profile/hooks'
 import { getProfileAddress } from 'utils/addressHelpers'
 import { formatBigNumber } from 'utils/formatBalance'
 import useGetProfileCosts from 'views/Nft/market/Profile/hooks/useGetProfileCosts'
@@ -15,36 +15,36 @@ interface ApproveCakePageProps extends InjectedModalProps {
 
 const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss }) => {
   const [isApproving, setIsApproving] = useState(false)
-  const { profile } = useProfile()
+  // const { profile } = useProfile()
   const { t } = useTranslation()
   const {
     costs: { numberCakeToUpdate, numberCakeToReactivate },
   } = useGetProfileCosts()
   const cakeContract = useMaki()
   const { toastError } = useToast()
-  const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
+  // const cost = profile.isActive ? numberCakeToUpdate : numberCakeToReactivate
 
-  const handleApprove = async () => {
-    const tx = await cakeContract.approve(getProfileAddress(), cost.mul(2).toString())
-    setIsApproving(true)
-    const receipt = await tx.wait()
-    if (receipt.status) {
-      goToChange()
-    } else {
-      toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
-      setIsApproving(false)
-    }
-  }
+  // const handleApprove = async () => {
+  //   const tx = await cakeContract.approve(getProfileAddress(), cost.mul(2).toString())
+  //   setIsApproving(true)
+  //   const receipt = await tx.wait()
+  //   if (receipt.status) {
+  //     goToChange()
+  //   } else {
+  //     toastError(t('Error'), t('Please try again. Confirm the transaction and make sure you are paying enough gas!'))
+  //     setIsApproving(false)
+  //   }
+  // }
 
-  if (!profile) {
-    return null
-  }
+  // if (!profile) {
+  //   return null
+  // }
 
   return (
     <Flex flexDirection="column">
       <Flex alignItems="center" justifyContent="space-between" mb="24px">
-        <Text>{profile.isActive ? t('Cost to update:') : t('Cost to reactivate:')}</Text>
-        <Text>{formatBigNumber(cost)} CAKE</Text>
+        {/* <Text>{profile.isActive ? t('Cost to update:') : t('Cost to reactivate:')}</Text> */}
+        {/* <Text>{formatBigNumber(cost)} CAKE</Text> */}
       </Flex>
       <Button
         disabled={isApproving}
@@ -52,7 +52,7 @@ const ApproveCakePage: React.FC<ApproveCakePageProps> = ({ goToChange, onDismiss
         endIcon={isApproving ? <AutoRenewIcon spin color="currentColor" /> : null}
         width="100%"
         mb="8px"
-        onClick={handleApprove}
+        // onClick={handleApprove}
       >
         {t('Enable')}
       </Button>

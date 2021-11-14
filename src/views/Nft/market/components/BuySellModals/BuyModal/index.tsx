@@ -3,17 +3,17 @@ import { InjectedModalProps } from 'maki-toolkit'
 import { ethers } from 'ethers'
 import useTheme from 'hooks/useTheme'
 import { useTranslation } from 'contexts/Localization'
-import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
+import useTokenBalance, { useGetHtBalance } from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { ethersToBigNumber } from 'utils/bigNumber'
 import tokens from 'config/constants/tokens'
 import { parseUnits, formatEther } from 'ethers/lib/utils'
-import { useHRC20, useNftMarketContract } from 'hooks/useContract'
+import { useHRC20 } from 'hooks/useContract'
 import { useWeb3React } from '@web3-react/core'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+// import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import useToast from 'hooks/useToast'
-import { ToastDescriptionWithTx } from 'components/Toast'
+// import { ToastDescriptionWithTx } from 'components/Toast'
 import { useAppDispatch } from 'state'
 import { addUserNft } from 'state/nftMarket/reducer'
 import { NftLocation, NftToken } from 'state/nftMarket/types'
@@ -42,11 +42,11 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
   const [isPaymentCurrentInitialized, setIsPaymentCurrentInitialized] = useState(false)
   const { theme } = useTheme()
   const { t } = useTranslation()
-  const { callWithGasPrice } = useCallWithGasPrice()
+  // const { callWithGasPrice } = useCallWithGasPrice()
 
   const { chainId, account } = useWeb3React()
   const wbnbContract = useHRC20(tokens.wht.address[chainId])
-  const nftMarketContract = useNftMarketContract()
+  // const nftMarketContract = useNftMarketContract()
 
   const { toastSuccess } = useToast()
   const dispatch = useAppDispatch()
@@ -55,62 +55,63 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
   const nftPrice = parseFloat(nftToBuy.marketData.currentAskPrice)
 
   // BNB - returns ethers.BigNumber
-  const { balance: bnbBalance, fetchStatus: bnbFetchStatus } = useGetBnbBalance()
-  const formattedBnbBalance = parseFloat(formatEther(bnbBalance))
+  const { balance: bnbBalance } = useGetHtBalance()
+  // const formattedBnbBalance = parseFloat(formatEther(bnbBalance))
   // WBNB - returns BigNumber
   const { balance: wbnbBalance, fetchStatus: wbnbFetchStatus } = useTokenBalance(tokens.wht.address[chainId])
   const formattedWbnbBalance = getBalanceNumber(wbnbBalance)
 
-  const walletBalance = paymentCurrency === PaymentCurrency.BNB ? formattedBnbBalance : formattedWbnbBalance
-  const walletFetchStatus = paymentCurrency === PaymentCurrency.BNB ? bnbFetchStatus : wbnbFetchStatus
+  // const walletBalance = paymentCurrency === PaymentCurrency.BNB ? formattedBnbBalance : formattedWbnbBalance
+  // const walletFetchStatus = paymentCurrency === PaymentCurrency.BNB ? bnbFetchStatus : wbnbFetchStatus
 
-  const notEnoughBnbForPurchase =
-    paymentCurrency === PaymentCurrency.BNB
-      ? bnbBalance.lt(nftPriceWei)
-      : wbnbBalance.lt(ethersToBigNumber(nftPriceWei))
+  // const notEnoughBnbForPurchase =
+  //   paymentCurrency === PaymentCurrency.BNB
+  //     ? bnbBalance.lt(nftPriceWei)
+  //     : wbnbBalance.lt(ethersToBigNumber(nftPriceWei))
 
-  useEffect(() => {
-    if (bnbBalance.lt(nftPriceWei) && wbnbBalance.gte(ethersToBigNumber(nftPriceWei)) && !isPaymentCurrentInitialized) {
-      setPaymentCurrency(PaymentCurrency.WBNB)
-      setIsPaymentCurrentInitialized(true)
-    }
-  }, [bnbBalance, wbnbBalance, nftPriceWei, isPaymentCurrentInitialized])
+  // useEffect(() => {
+  //   if (bnbBalance.lt(nftPriceWei) && wbnbBalance.gte(ethersToBigNumber(nftPriceWei)) && !isPaymentCurrentInitialized) {
+  //     setPaymentCurrency(PaymentCurrency.WBNB)
+  //     setIsPaymentCurrentInitialized(true)
+  //   }
+  // }, [bnbBalance, wbnbBalance, nftPriceWei, isPaymentCurrentInitialized])
 
   const { isApproving, isApproved, isConfirming, handleApprove, handleConfirm } = useApproveConfirmTransaction({
     onRequiresApproval: async () => {
+      return true;
       try {
-        const currentAllowance = await wbnbContract.allowance(account, nftMarketContract.address)
-        return currentAllowance.gt(0)
+        // const currentAllowance = await wbnbContract.allowance(account, nftMarketContract.address)
+        // return currentAllowance.gt(0)
       } catch (error) {
-        return false
+        // return false
       }
     },
     onApprove: () => {
-      return callWithGasPrice(wbnbContract, 'approve', [nftMarketContract.address, ethers.constants.MaxUint256])
+      // return callWithGasPrice(wbnbContract, 'approve', [nftMarketContract.address, ethers.constants.MaxUint256])
     },
-    onApproveSuccess: async ({ receipt }) => {
-      toastSuccess(
-        t('Contract approved - you can now buy NFT with WBNB!'),
-        <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
-      )
+    onApproveSuccess: async () => {
+      // toastSuccess(
+      //   t('Contract approved - you can now buy NFT with WBNB!'),
+      //   <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
+      // )
     },
     onConfirm: () => {
       const payAmount = Number.isNaN(nftPrice)
         ? ethers.BigNumber.from(0)
         : parseUnits(nftToBuy.marketData.currentAskPrice)
       if (paymentCurrency === PaymentCurrency.BNB) {
-        return callWithGasPrice(nftMarketContract, 'buyTokenUsingBNB', [nftToBuy.collectionAddress, nftToBuy.tokenId], {
-          value: payAmount,
-        })
+        // return callWithGasPrice(nftMarketContract, 'buyTokenUsingBNB', [nftToBuy.collectionAddress, nftToBuy.tokenId], {
+        //   value: payAmount,
+        // })
       }
-      return callWithGasPrice(nftMarketContract, 'buyTokenUsingWBNB', [
-        nftToBuy.collectionAddress,
-        nftToBuy.tokenId,
-        payAmount,
-      ])
+      // return callWithGasPrice(nftMarketContract, 'buyTokenUsingWBNB', [
+      //   nftToBuy.collectionAddress,
+      //   nftToBuy.tokenId,
+      //   payAmount,
+      // ])
     },
-    onSuccess: async ({ receipt }) => {
-      setConfirmedTxHash(receipt.transactionHash)
+    onSuccess: async () => {
+      // setConfirmedTxHash(receipt.transactionHash)
       setStage(BuyingStage.TX_CONFIRMED)
       dispatch(
         addUserNft({
@@ -119,10 +120,10 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
           nftLocation: NftLocation.WALLET,
         }),
       )
-      toastSuccess(
-        t('Your NFT has been sent to your wallet'),
-        <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
-      )
+      // toastSuccess(
+      //   t('Your NFT has been sent to your wallet'),
+      //   <ToastDescriptionWithTx txHash={receipt.transactionHash} />,
+      // )
     },
   })
 
@@ -149,16 +150,17 @@ const BuyModal: React.FC<BuyModalProps> = ({ nftToBuy, onDismiss }) => {
       headerBackground={theme.colors.gradients.cardHeader}
     >
       {stage === BuyingStage.REVIEW && (
-        <ReviewStage
-          nftToBuy={nftToBuy}
-          paymentCurrency={paymentCurrency}
-          setPaymentCurrency={setPaymentCurrency}
-          nftPrice={nftPrice}
-          walletBalance={walletBalance}
-          walletFetchStatus={walletFetchStatus}
-          notEnoughBnbForPurchase={notEnoughBnbForPurchase}
-          continueToNextStage={continueToNextStage}
-        />
+        <div />
+        // <ReviewStage
+        //   nftToBuy={nftToBuy}
+        //   paymentCurrency={paymentCurrency}
+        //   setPaymentCurrency={setPaymentCurrency}
+        //   nftPrice={nftPrice}
+          // walletBalance={walletBalance}
+          // walletFetchStatus={walletFetchStatus}
+          // notEnoughBnbForPurchase={notEnoughBnbForPurchase}
+        //   continueToNextStage={continueToNextStage}
+        // />
       )}
       {stage === BuyingStage.APPROVE_AND_CONFIRM && (
         <ApproveAndConfirmStage

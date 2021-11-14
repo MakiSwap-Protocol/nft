@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useAchievementsForAddress, useProfileForAddress } from 'state/profile/hooks'
+// import { useAchievementsForAddress, useProfileForAddress } from 'state/profile/hooks'
 import { Box } from 'maki-toolkit'
 import Page from 'components/Layout/Page'
 import { Route, useParams } from 'react-router'
@@ -28,15 +28,17 @@ const TabMenuWrapper = styled(Box)`
 
 const UnconnectedProfile = () => {
   const { accountAddress } = useParams<{ accountAddress: string }>()
-  const { profile: profileHookState, isFetching: isProfileFetching } = useProfileForAddress(accountAddress)
-  const { profile } = profileHookState || {}
-  const { achievements, isFetching: isAchievementFetching } = useAchievementsForAddress(accountAddress)
-  const { nfts, isLoading: isNftLoading } = useNftsForAddress(accountAddress, profile, isProfileFetching)
+  // const { profile: profileHookState, isFetching: isProfileFetching } = useProfileForAddress(accountAddress)
+  // const { profile } = profileHookState || {}
+  // const { achievements, isFetching: isAchievementFetching } = useAchievementsForAddress(accountAddress)
+  // const { nfts, isLoading: isNftLoading } = useNftsForAddress(accountAddress, profile, isProfileFetching)
 
   return (
     <>
-      <MarketPageHeader position="relative">
-        <ProfileHeader
+      <MarketPageHeader
+        // position="relative"
+      >
+        {/* <ProfileHeader
           accountPath={accountAddress}
           profile={profile}
           achievements={achievements}
@@ -44,14 +46,14 @@ const UnconnectedProfile = () => {
           isProfileLoading={isProfileFetching}
           isNftLoading={isNftLoading}
           isAchievementsLoading={isAchievementFetching}
-        />
+        /> */}
         <TabMenuWrapper>
           <TabMenu />
         </TabMenuWrapper>
       </MarketPageHeader>
       <Page style={{ minHeight: 'auto' }}>
         <Route path={`${nftsBaseUrl}/profile/:accountAddress/achievements`}>
-          <Achievements achievements={achievements} isLoading={isAchievementFetching} points={profile?.points} />
+          {/* <Achievements achievements={achievements} isLoading={isAchievementFetching} points={profile?.points} /> */}
         </Route>
         <Route path={`${nftsBaseUrl}/profile/:accountAddress/activity`}>
           <SubMenu />
@@ -59,7 +61,7 @@ const UnconnectedProfile = () => {
         </Route>
         <Route exact path={`${nftsBaseUrl}/profile/:accountAddress`}>
           <SubMenu />
-          <UnconnectedProfileNfts nfts={nfts} isLoading={isNftLoading} />
+          {/* <UnconnectedProfileNfts nfts={nfts} isLoading={isNftLoading} /> */}
         </Route>
       </Page>
     </>

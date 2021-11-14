@@ -113,7 +113,9 @@ const ForSaleTableCard: React.FC<ForSaleTableCardProps> = ({
       </Grid>
       {nftsOnCurrentPage.length > 0 ? (
         <>
-          <TableHeading flex="0 1 auto" gridTemplateColumns="2fr 2fr 1fr" py="12px">
+          <TableHeading
+            // flex="0 1 auto" gridTemplateColumns="2fr 2fr 1fr" py="12px"
+          >
             <StyledSortButton type="button" onClick={togglePriceSort}>
               <Flex alignItems="center">
                 <Text textTransform="uppercase" color="textSubtle" bold fontSize="12px" px="24px">

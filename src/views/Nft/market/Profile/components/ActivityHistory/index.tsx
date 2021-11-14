@@ -9,7 +9,7 @@ import { ArrowBackIcon, ArrowForwardIcon, Card, Flex, Text, useMatchBreakpoints 
 import { getNftsFromDifferentCollectionsApi, getUserActivity } from 'state/nftMarket/helpers'
 import { NftToken, TokenIdWithCollectionAddress, UserNftInitializationState } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import useTheme from 'hooks/useTheme'
 import { useParams } from 'react-router'
 import { Activity, sortUserActivity } from '../../utils/sortUserActivity'
@@ -33,7 +33,7 @@ const ActivityHistory = () => {
   const [sortedUserActivities, setSortedUserActivities] = useState<Activity[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const { activity: userActivity } = useUserNfts()
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
   const { isXs, isSm } = useMatchBreakpoints()
 
   useEffect(() => {
@@ -138,7 +138,7 @@ const ActivityHistory = () => {
                   </>
                 )}
                 <th style={{ textAlign: 'center' }}> {t('Date')}</th>
-                {isXs || isSm ? null : <th />}
+                {/* {isXs || isSm ? null : <th />} */}
               </tr>
             </thead>
 
@@ -149,12 +149,13 @@ const ActivityHistory = () => {
                 activitiesSlice.map((activity) => {
                   const nftMeta = nftMetadata.find((metaNft) => metaNft.tokenId === activity.nft.tokenId)
                   return (
-                    <ActivityRow
-                      key={`${activity.nft.tokenId}${activity.timestamp}`}
-                      activity={activity}
-                      nft={nftMeta}
-                      bnbBusdPrice={bnbBusdPrice}
-                    />
+                    <div />
+                    // <ActivityRow
+                    //   key={`${activity.nft.tokenId}${activity.timestamp}`}
+                    //   activity={activity}
+                    //   nft={nftMeta}
+                    //   bnbBusdPrice={bnbBusdPrice}
+                    // />
                   )
                 })
               )}

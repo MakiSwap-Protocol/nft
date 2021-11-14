@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, TextProps } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
-import { TranslatableText as AchievementTitleType } from 'config/constants/types'
+import { TranslatableText as AchievementTitleType } from 'state/types'
 
 interface AchievementTitleProps extends TextProps {
   title: AchievementTitleType

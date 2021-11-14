@@ -35,15 +35,15 @@ const CollectionTraits: React.FC<CollectionTraitsProps> = ({ collectionAddress }
           <tbody>
             {times(19).map((bunnyCnt) => (
               <tr key={bunnyCnt}>
-                <Td>
+                <td>
                   <Skeleton width="100px" />
-                </Td>
-                <Td>
+                </td>
+                <td>
                   <Skeleton />
-                </Td>
-                <Td>
+                </td>
+                <td>
                   <Skeleton />
-                </Td>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -3,7 +3,7 @@ import { Flex, Box, Card, CardBody, Text, Button, BinanceIcon, Skeleton, useModa
 import { useTranslation } from 'contexts/Localization'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { NftToken } from 'state/nftMarket/types'
-import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
+// import { useBNBBusdPrice } from 'state/hooks'
 import EditProfileModal from 'views/Nft/market/Profile/components/EditProfileModal'
 import BuyModal from '../../../components/BuySellModals/BuyModal'
 import SellModal from '../../../components/BuySellModals/SellModal'
@@ -18,10 +18,10 @@ interface MainNFTCardProps {
 
 const MainNFTCard: React.FC<MainNFTCardProps> = ({ nft, isOwnNft, nftIsProfilePic }) => {
   const { t } = useTranslation()
-  const bnbBusdPrice = useBNBBusdPrice()
+  // const bnbBusdPrice = useBNBBusdPrice()
 
   const currentAskPriceAsNumber = nft.marketData?.currentAskPrice ? parseFloat(nft.marketData.currentAskPrice) : 0
-  const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, currentAskPriceAsNumber)
+  // const priceInUsd = multiplyPriceByAmount(bnbBusdPrice, currentAskPriceAsNumber)
   const [onPresentBuyModal] = useModal(<BuyModal nftToBuy={nft} />)
   const [onPresentSellModal] = useModal(
     <SellModal variant={nft.marketData?.isTradable ? 'edit' : 'sell'} nftToSell={nft} />,
@@ -76,14 +76,14 @@ const MainNFTCard: React.FC<MainNFTCardProps> = ({ nft, isOwnNft, nftIsProfilePi
                   <Text fontSize="24px" bold mr="4px">
                     {nft.marketData.currentAskPrice}
                   </Text>
-                  {bnbBusdPrice ? (
+                  {/* {bnbBusdPrice ? (
                     <Text color="textSubtle">{`(~${priceInUsd.toLocaleString(undefined, {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })} USD)`}</Text>
                   ) : (
                     <Skeleton width="64px" />
-                  )}
+                  )} */}
                 </Flex>
               ) : (
                 <Text>{t('Not for sale')}</Text>

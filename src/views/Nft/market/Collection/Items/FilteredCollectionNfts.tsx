@@ -12,7 +12,7 @@ import { Collection, NftFilterLoadingState } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'
 import GridPlaceholder from '../../components/GridPlaceholder'
 import { CollectibleLinkCard } from '../../components/CollectibleCard'
-import { REQUEST_SIZE } from '../config'
+import REQUEST_SIZE from '../config'
 
 const Grid = styled.div`
   display: grid;
@@ -77,9 +77,9 @@ const FilteredCollectionNfts: React.FC<FilteredCollectionNftsProps> = ({ collect
       {nftsToShow.length > 0 ? (
         <>
           <Grid
-            gridGap="16px"
-            gridTemplateColumns={['1fr', null, 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
-            alignItems="start"
+            // gridGap="16px"
+            // gridTemplateColumns={['1fr', null, 'repeat(3, 1fr)', null, 'repeat(4, 1fr)']}
+            // alignItems="start"
           >
             {nftsToShow.map((nft) => {
               const currentAskPriceAsNumber = nft.marketData && parseFloat(nft.marketData.currentAskPrice)

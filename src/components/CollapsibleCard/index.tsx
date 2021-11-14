@@ -8,7 +8,7 @@ import {
   IconButton,
   ChevronUpIcon,
   ChevronDownIcon,
-} from '@pancakeswap/uikit'
+} from 'maki-toolkit'
 
 interface CollapsibleCardProps extends CardProps {
   initialOpenState?: boolean

@@ -22,7 +22,9 @@ const NftProfile = () => {
   if (invalidAddress) {
     return (
       <>
-        <MarketPageHeader position="relative">
+        <MarketPageHeader
+          // position="relative"
+        >
           <ProfileHeader
             accountPath={accountAddress}
             profile={null}

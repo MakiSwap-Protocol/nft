@@ -1,4 +1,4 @@
-export enum SellingStage {
+enum SellingStage {
   // Sell flow
   SELL,
   SET_PRICE,
@@ -16,3 +16,5 @@ export enum SellingStage {
   // Common
   TX_CONFIRMED,
 }
+
+export default SellingStage;

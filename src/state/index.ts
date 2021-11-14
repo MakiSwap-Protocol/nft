@@ -6,6 +6,7 @@ import farmsReducer from "./farms";
 import poolsReducer from "./pools";
 import blockReducer from "./block";
 
+import achievements from "./achievements";
 import application from "./application/reducer";
 import { updateVersion } from "./global/actions";
 import user from "./user/reducer";
@@ -22,6 +23,7 @@ const PERSISTED_KEYS: string[] = ["user", "transactions", "lists"];
 const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
   reducer: {
+    achievements,
     block: blockReducer,
     farms: farmsReducer,
     pools: poolsReducer,

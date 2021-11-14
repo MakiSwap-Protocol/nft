@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { Button, Box, InjectedModalProps, Text } from 'maki-toolkit'
 import { useWeb3React } from '@web3-react/core'
 import { useAppDispatch } from 'state'
-import { useProfile } from 'state/profile/hooks'
+// import { useProfile } from 'state/profile/hooks'
 import { useTranslation } from 'contexts/Localization'
 import useToast from 'hooks/useToast'
 import { fetchProfile } from 'state/profile'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { getErc721Contract } from 'utils/contractHelpers'
 import { useProfile as useProfileContract } from 'hooks/useContract'
-import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
+// import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import { getProfileAddress } from 'utils/addressHelpers'
-import { ToastDescriptionWithTx } from 'components/Toast'
-import ApproveConfirmButtons from 'components/ApproveConfirmButtons'
-import SelectionCard from 'views/ProfileCreation/SelectionCard'
+// import { ToastDescriptionWithTx } from 'components/Toast'
+// import ApproveConfirmButtons from 'components/ApproveConfirmButtons'
+// import SelectionCard from 'views/ProfileCreation/SelectionCard'
 import { useUserNfts } from 'state/nftMarket/hooks'
 import { NftLocation } from 'state/nftMarket/types'
 
@@ -27,11 +27,11 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
   const { t } = useTranslation()
   const { nfts } = useUserNfts()
   const dispatch = useAppDispatch()
-  const { profile } = useProfile()
+  // const { profile } = useProfile()
   const profileContract = useProfileContract()
   const { account, library } = useWeb3React()
   const { toastSuccess } = useToast()
-  const { callWithGasPrice } = useCallWithGasPrice()
+  // const { callWithGasPrice } = useCallWithGasPrice()
 
   const nftsInWallet = nfts.filter((nft) => nft.location === NftLocation.WALLET)
 
@@ -39,22 +39,22 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
     useApproveConfirmTransaction({
       onApprove: () => {
         const contract = getErc721Contract(selectedNft.collectionAddress, library.getSigner())
-        return callWithGasPrice(contract, 'approve', [getProfileAddress(), selectedNft.tokenId])
+        // return callWithGasPrice(contract, 'approve', [getProfileAddress(), selectedNft.tokenId])
       },
       onConfirm: () => {
-        if (!profile.isActive) {
-          return callWithGasPrice(profileContract, 'reactivateProfile', [
-            selectedNft.collectionAddress,
-            selectedNft.tokenId,
-          ])
-        }
+        // if (!profile.isActive) {
+        //   return callWithGasPrice(profileContract, 'reactivateProfile', [
+        //     selectedNft.collectionAddress,
+        //     selectedNft.tokenId,
+        //   ])
+        // }
 
-        return callWithGasPrice(profileContract, 'updateProfile', [selectedNft.collectionAddress, selectedNft.tokenId])
+        // return callWithGasPrice(profileContract, 'updateProfile', [selectedNft.collectionAddress, selectedNft.tokenId])
       },
-      onSuccess: async ({ receipt }) => {
+      onSuccess: async () => {
         // Re-fetch profile
         await dispatch(fetchProfile(account))
-        toastSuccess(t('Profile Updated!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
+        // toastSuccess(t('Profile Updated!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
 
         onDismiss()
       },
@@ -74,17 +74,18 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
             })
           }
           return (
-            <SelectionCard
-              name="profilePicture"
-              key={`${walletNft.collectionAddress}#${walletNft.tokenId}`}
-              value={walletNft.tokenId}
-              image={walletNft.image.thumbnail}
-              isChecked={walletNft.tokenId === selectedNft.tokenId}
-              onChange={handleChange}
-              disabled={isApproving || isConfirming || isConfirmed}
-            >
-              <Text bold>{walletNft.name}</Text>
-            </SelectionCard>
+            // <SelectionCard
+            //   name="profilePicture"
+            //   key={`${walletNft.collectionAddress}#${walletNft.tokenId}`}
+            //   value={walletNft.tokenId}
+            //   image={walletNft.image.thumbnail}
+            //   isChecked={walletNft.tokenId === selectedNft.tokenId}
+            //   onChange={handleChange}
+            //   disabled={isApproving || isConfirming || isConfirmed}
+            // >
+            //   <Text bold>{walletNft.name}</Text>
+            // </SelectionCard>
+            <div />
           )
         })}
       </Box>
@@ -98,14 +99,14 @@ const ChangeProfilePicPage: React.FC<ChangeProfilePicPageProps> = ({ onDismiss }
           </Text>
         </>
       )}
-      <ApproveConfirmButtons
+      {/* <ApproveConfirmButtons
         isApproveDisabled={isConfirmed || isConfirming || isApproved || selectedNft.tokenId === null}
         isApproving={isApproving}
         isConfirmDisabled={!isApproved || isConfirmed || selectedNft.tokenId === null}
         isConfirming={isConfirming}
         onApprove={handleApprove}
         onConfirm={handleConfirm}
-      />
+      /> */}
       <Button mt="8px" variant="text" width="100%" onClick={onDismiss} disabled={isApproving || isConfirming}>
         {t('Close Window')}
       </Button>

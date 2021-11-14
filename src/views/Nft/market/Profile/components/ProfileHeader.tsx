@@ -52,7 +52,7 @@ const ProfileHeader: React.FC<HeaderProps> = ({
       : '-'
     : null
 
-  const avatarImage = profile?.nft?.image?.thumbnail || '/images/nfts/no-profile-md.png'
+  // const avatarImage = profile?.nft?.image?.thumbnail || '/images/nfts/no-profile-md.png'
 
   const getBannerImage = () => {
     const imagePath = '/images/teams'
@@ -93,11 +93,11 @@ const ProfileHeader: React.FC<HeaderProps> = ({
     const getImage = () => {
       return (
         <>
-          {profile && accountPath && isConnectedAccount ? (
+          {/* {profile && accountPath && isConnectedAccount ? (
             <EditProfileAvatar src={avatarImage} alt={t('User profile picture')} />
           ) : (
             <AvatarImage src={avatarImage} alt={t('User profile picture')} />
-          )}
+          )} */}
         </>
       )
     }
@@ -152,7 +152,10 @@ const ProfileHeader: React.FC<HeaderProps> = ({
   return (
     <>
       <BannerHeader bannerImage={getBannerImage()} bannerAlt={t('User team banner')} avatar={getAvatar()} />
-      <MarketPageTitle pb="48px" title={getTitle()} description={renderDescription()}>
+      <MarketPageTitle
+        // pb="48px"
+        title={getTitle()} description={renderDescription()}
+      >
         <StatBox>
           <StatBoxItem title={t('NFT Collected')} stat={numNftCollected} />
           <StatBoxItem title={t('Points')} stat={numPoints} />

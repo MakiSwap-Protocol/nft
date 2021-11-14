@@ -1,12 +1,14 @@
 type sortBuilder = {
-  priceSort: string
-}
+  priceSort: string;
+};
 
-export const sortNFTsByPriceBuilder =
+const sortNFTsByPriceBuilder =
   ({ priceSort }: sortBuilder) =>
   (nftA, nftB) => {
-    const nftPriceA = Number(nftA.marketData.currentAskPrice) ?? 0
-    const nftPriceB = Number(nftB.marketData.currentAskPrice) ?? 0
+    const nftPriceA = Number(nftA.marketData.currentAskPrice) ?? 0;
+    const nftPriceB = Number(nftB.marketData.currentAskPrice) ?? 0;
 
-    return priceSort === 'asc' ? nftPriceA - nftPriceB : nftPriceB - nftPriceA
-  }
+    return priceSort === "asc" ? nftPriceA - nftPriceB : nftPriceB - nftPriceA;
+  };
+
+export default sortNFTsByPriceBuilder;
