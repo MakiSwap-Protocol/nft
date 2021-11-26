@@ -7,7 +7,7 @@ import { useTranslation } from 'contexts/Localization'
 import { getHuobiScanLinkForNft } from 'utils'
 import { HorizontalDivider, RoundedImage } from './BuySellModals/shared/styles'
 import EditProfileModal from '../Profile/components/EditProfileModal'
-import { nftsBaseUrl, pancakeBunniesAddress } from '../constants'
+import { pancakeBunniesAddress } from '../constants'
 
 export const StyledModal = styled(Modal)`
   & > div:last-child {
@@ -63,7 +63,7 @@ const ProfileNftModal: React.FC<ProfileNftModalProps> = ({ nft, onDismiss }) => 
               height="16px"
               external
               variant="text"
-              href={`${nftsBaseUrl}/collections/${nft.collectionAddress}/${itemPageUrlId}`}
+              href={`/collections/${nft.collectionAddress}/${itemPageUrlId}`}
             >
               {t('View Item')}
             </Button>

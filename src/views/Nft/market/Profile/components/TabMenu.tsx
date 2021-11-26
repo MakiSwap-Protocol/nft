@@ -3,7 +3,6 @@ import { useTranslation } from 'contexts/Localization'
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { Flex } from 'maki-toolkit'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 
 const Tab = styled.button<{ $active: boolean }>`
   display: inline-flex;
@@ -39,7 +38,7 @@ const TabMenu = () => {
         onClick={() => setIsAchievementsActive(false)}
         $active={!achievementsActive}
         as={RouterLink}
-        to={`${nftsBaseUrl}/profile/${accountAddress}`}
+        to={`/profile/${accountAddress}`}
       >
         NFTs
       </Tab>
@@ -47,7 +46,7 @@ const TabMenu = () => {
         onClick={() => setIsAchievementsActive(true)}
         $active={achievementsActive}
         as={RouterLink}
-        to={`${nftsBaseUrl}/profile/${accountAddress}/achievements`}
+        to={`/profile/${accountAddress}/achievements`}
       >
         {t('Achievements')}
       </Tab>

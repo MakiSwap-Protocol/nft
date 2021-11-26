@@ -4,7 +4,6 @@ import orderBy from 'lodash/orderBy'
 import { Button, ChevronRightIcon, Flex, Heading, Text } from 'maki-toolkit'
 import { Link } from 'react-router-dom'
 import { useGetCollections } from 'state/nftMarket/hooks'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { useTranslation } from 'contexts/Localization'
 import { HotCollectionCard } from '../components/CollectibleCard'
 import { BNBAmountLabel } from '../components/CollectibleCard/styles'
@@ -35,7 +34,7 @@ const Collections = () => {
         </Heading>
         <Button
           as={Link}
-          to={`${nftsBaseUrl}/collections/`}
+          to='/collections/'
           variant="secondary"
           scale="sm"
           endIcon={<ChevronRightIcon color="primary" width="24px" />}
@@ -51,7 +50,7 @@ const Collections = () => {
               bgSrc={collection.banner.small}
               avatarSrc={collection.avatar}
               collectionName={collection.name}
-              url={`${nftsBaseUrl}/collections/${collection.address}`}
+              url={`/collections/${collection.address}`}
             >
               <Flex alignItems="center">
                 <Text fontSize="12px" color="textSubtle">

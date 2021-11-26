@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { Flex, Text, Button, Link, BinanceIcon, LinkExternal, useModal } from 'maki-toolkit'
 import { useTranslation } from 'contexts/Localization'
-import { nftsBaseUrl, pancakeBunniesAddress } from 'views/Nft/market/constants'
+import { pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { NftToken } from 'state/nftMarket/types'
 import { getHuobiScanLinkForNft } from 'utils'
 import EditProfileModal from 'views/Nft/market/Profile/components/EditProfileModal'
@@ -80,7 +80,7 @@ const SellStage: React.FC<SellStageProps> = ({
             height="16px"
             external
             variant="text"
-            href={`${nftsBaseUrl}/collections/${nftToSell.collectionAddress}/${itemPageUrlId}`}
+            href={`/collections/${nftToSell.collectionAddress}/${itemPageUrlId}`}
           >
             {t('View Item')}
           </Button>

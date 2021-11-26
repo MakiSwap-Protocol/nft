@@ -3,7 +3,6 @@ import { Box, ChevronLeftIcon, Flex } from 'maki-toolkit'
 import { Link as RouterLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 import SearchBar from '../components/SearchBar'
 
 const BackLink = styled(RouterLink)`
@@ -18,7 +17,7 @@ const TopBar: React.FC = () => {
 
   return (
     <Flex alignItems="center" justifyContent="space-between" mb="24px">
-      <BackLink to={`${nftsBaseUrl}/collections`}>
+      <BackLink to='/collections'>
         <ChevronLeftIcon color="primary" width="24px" />
         {t('All Collections')}
       </BackLink>

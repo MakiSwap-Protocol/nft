@@ -16,7 +16,6 @@ import { useGetCollections } from 'state/nftMarket/hooks'
 import { useTranslation } from 'contexts/Localization'
 import Page from 'components/Layout/Page'
 import PageHeader from 'components/PageHeader'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 
 export const ITEMS_PER_PAGE = 10
 
@@ -134,7 +133,7 @@ const Collectible = () => {
                 return (
                   <tr key={collection.address}>
                     <td>
-                      <Link to={`${nftsBaseUrl}/collections/${collection.address}`}>
+                      <Link to={`/collections/${collection.address}`}>
                         <Flex alignItems="center">
                           <ProfileAvatar src={collection.avatar} width={48} height={48} mr="16px" />
                           {collection.name}

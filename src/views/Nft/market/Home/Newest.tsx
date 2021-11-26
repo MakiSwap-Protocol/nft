@@ -5,7 +5,7 @@ import { useTranslation } from 'contexts/Localization'
 import { Link } from 'react-router-dom'
 import { NftToken } from 'state/nftMarket/types'
 import { getLatestListedNfts, getNftsFromDifferentCollectionsApi } from 'state/nftMarket/helpers'
-import { nftsBaseUrl, pancakeBunniesAddress } from 'views/Nft/market/constants'
+import { pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { CollectibleLinkCard } from '../components/CollectibleCard'
 import GridPlaceholder from '../components/GridPlaceholder'
 
@@ -53,7 +53,7 @@ const Newest: React.FC = () => {
         <Heading>{t('Newest Arrivals')}</Heading>
         <Button
           as={Link}
-          to={`${nftsBaseUrl}/collections/`}
+          to='/collections'
           variant="secondary"
           scale="sm"
           endIcon={<ChevronRightIcon color="primary" />}

@@ -12,7 +12,6 @@ import CollapsibleCard from 'components/CollapsibleCard'
 import { useGetLowestPriceFromBunnyId } from '../../hooks/useGetLowestPrice'
 import { BNBAmountLabel } from '../../components/CollectibleCard/styles'
 import sortBunniesByRarityBuilder from './utils'
-import { nftsBaseUrl } from '../../constants'
 import { SortType } from '../../types'
 import { ClickableRow, NftName, StyledSortButton, TableWrapper } from './styles'
 
@@ -96,7 +95,7 @@ const PancakeBunniesTraits: React.FC<PancakeBunniesTraitsProps> = ({ collectionA
                   const count: number = tokenApiResponse.attributesDistribution[bunnyId] ?? 0
                   const percentage = (count / totalMinted) * 100
                   const handleClick = () => {
-                    push(`${nftsBaseUrl}/collections/${collectionAddress}/${bunnyId}`)
+                    push(`/collections/${collectionAddress}/${bunnyId}`)
                   }
 
                   return (

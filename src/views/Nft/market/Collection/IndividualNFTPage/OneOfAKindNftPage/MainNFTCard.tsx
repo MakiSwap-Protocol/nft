@@ -7,7 +7,6 @@ import { NftToken } from 'state/nftMarket/types'
 import EditProfileModal from 'views/Nft/market/Profile/components/EditProfileModal'
 import BuyModal from '../../../components/BuySellModals/BuyModal'
 import SellModal from '../../../components/BuySellModals/SellModal'
-import { nftsBaseUrl } from '../../../constants'
 import { RoundedImage, Container, CollectionLink } from '../shared/styles'
 
 interface MainNFTCardProps {
@@ -60,7 +59,7 @@ const MainNFTCard: React.FC<MainNFTCardProps> = ({ nft, isOwnNft, nftIsProfilePi
         <Container flexDirection={['column-reverse', null, 'row']}>
           <Flex flex="2">
             <Box>
-              <CollectionLink to={`${nftsBaseUrl}/collections/${nft.collectionAddress}`}>
+              <CollectionLink to={`/collections/${nft.collectionAddress}`}>
                 {nft.collectionName}
               </CollectionLink>
               <Text fontSize="40px" bold mt="12px">

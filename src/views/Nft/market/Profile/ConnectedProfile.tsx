@@ -6,7 +6,6 @@ import { Box } from 'maki-toolkit'
 import Page from 'components/Layout/Page'
 import { Route } from 'react-router'
 import { useUserNfts } from 'state/nftMarket/hooks'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 import { useAchievements, useFetchAchievements } from 'state/achievements/hooks'
 import { AchievementFetchStatus } from 'state/types'
 import { UserNftInitializationState } from 'state/nftMarket/types'
@@ -59,18 +58,18 @@ const ConnectedProfile = () => {
         </TabMenuWrapper>
       </MarketPageHeader>
       <Page style={{ minHeight: 'auto' }}>
-        <Route path={`${nftsBaseUrl}/profile/:accountAddress/achievements`}>
+        <Route path='/profile/:accountAddress/achievements'>
           {/* <Achievements
             achievements={achievements}
             isLoading={achievementFetchStatus !== AchievementFetchStatus.FETCHED}
             points={profile?.points}
           /> */}
         </Route>
-        <Route path={`${nftsBaseUrl}/profile/:accountAddress/activity`}>
+        <Route path='/profile/:accountAddress/activity'>
           <SubMenu />
           <ActivityHistory />
         </Route>
-        <Route exact path={`${nftsBaseUrl}/profile/:accountAddress`}>
+        <Route exact path='/profile/:accountAddress'>
           <SubMenu />
           <UserNfts />
         </Route>

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import PageHeader from 'components/PageHeader'
 import SectionsWithFoldableText from 'components/FoldableSection/SectionsWithFoldableText'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 import useTheme from 'hooks/useTheme'
 import SearchBar from '../components/SearchBar'
 import Collections from './Collections'
@@ -17,11 +16,8 @@ const Gradient = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.cardHeader};
 `
 
-const PageSection = styled.div``
-
-const StyledPageHeader = styled(PageHeader)`
-  margin-bottom: -40px;
-  padding-bottom: 40px;
+const PageSection = styled.div`
+  padding: 20px 32px;
 `
 
 const StyledHeaderInner = styled(Flex)`
@@ -56,24 +52,24 @@ const Home = () => {
 
   return (
     <>
-      <StyledPageHeader>
+      <PageHeader>
         <StyledHeaderInner>
           <div>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
               {t('NFT Market')}
             </Heading>
             <Heading scale="lg" color="text">
-              {t('Buy and Sell NFTs on Binance Smart Chain')}
+              {t('Buy and Sell NFTs on Huobi ECO Chain')}
             </Heading>
             {account && (
-              <Button as={Link} to={`${nftsBaseUrl}/profile/${account.toLowerCase()}`} mt="32px">
+              <Button as={Link} to={`/profile/${account.toLowerCase()}`} mt="32px">
                 {t('Manage/Sell')}
               </Button>
             )}
           </div>
           <SearchBar />
         </StyledHeaderInner>
-      </StyledPageHeader>
+      </PageHeader>
       <PageSection>
         <Collections />
         <Newest />

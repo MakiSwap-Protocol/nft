@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { Box } from 'maki-toolkit'
 import Page from 'components/Layout/Page'
 import { Route, useParams } from 'react-router'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
 import MarketPageHeader from '../components/MarketPageHeader'
 import ProfileHeader from './components/ProfileHeader'
 import TabMenu from './components/TabMenu'
@@ -52,14 +51,14 @@ const UnconnectedProfile = () => {
         </TabMenuWrapper>
       </MarketPageHeader>
       <Page style={{ minHeight: 'auto' }}>
-        <Route path={`${nftsBaseUrl}/profile/:accountAddress/achievements`}>
+        <Route path='/profile/:accountAddress/achievements'>
           {/* <Achievements achievements={achievements} isLoading={isAchievementFetching} points={profile?.points} /> */}
         </Route>
-        <Route path={`${nftsBaseUrl}/profile/:accountAddress/activity`}>
+        <Route path='/profile/:accountAddress/activity'>
           <SubMenu />
           <ActivityHistory />
         </Route>
-        <Route exact path={`${nftsBaseUrl}/profile/:accountAddress`}>
+        <Route exact path='/profile/:accountAddress'>
           <SubMenu />
           {/* <UnconnectedProfileNfts nfts={nfts} isLoading={isNftLoading} /> */}
         </Route>

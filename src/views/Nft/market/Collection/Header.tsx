@@ -11,7 +11,6 @@ import StatBox, { StatBoxItem } from '../components/StatBox'
 import BannerHeader from '../components/BannerHeader'
 import AvatarImage from '../components/BannerHeader/AvatarImage'
 import BaseSubMenu from '../components/BaseSubMenu'
-import { nftsBaseUrl } from '../constants'
 import TopBar from './TopBar'
 import LowestPriceStatBoxItem from './LowestPriceStatBoxItem'
 
@@ -35,11 +34,11 @@ const Header: React.FC<HeaderProps> = ({ collection }) => {
   const itemsConfig = [
     {
       label: t('Items'),
-      href: `${nftsBaseUrl}/collections/${collectionAddress}#items`,
+      href: `/collections/${collectionAddress}#items`,
     },
     {
       label: t('Traits'),
-      href: `${nftsBaseUrl}/collections/${collectionAddress}#traits`,
+      href: `/collections/${collectionAddress}#traits`,
     },
   ]
 

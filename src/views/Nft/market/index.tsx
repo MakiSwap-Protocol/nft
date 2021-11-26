@@ -4,7 +4,6 @@ import { useWeb3React } from '@web3-react/core'
 import { useFetchCollections, useGetNFTInitializationState } from 'state/nftMarket/hooks'
 import PageLoader from 'components/Loader/PageLoader'
 import { NFTMarketInitializationState } from 'state/nftMarket/types'
-import { nftsBaseUrl } from './constants'
 
 const Home = lazy(() => import('./Home'))
 const NftProfile = lazy(() => import('./Profile'))
@@ -23,20 +22,20 @@ const Market = () => {
 
   return (
     <>
-      <Route exact path={nftsBaseUrl}>
+      <Route exact path='/'>
         <Home />
       </Route>
-      <Route exact path={`${nftsBaseUrl}/collections`}>
+      <Route exact path='/collections'>
         <Collections />
       </Route>
-      <Route path={`${nftsBaseUrl}/collections/:collectionAddress`}>
+      <Route path='/collections/:collectionAddress'>
         <Collection />
       </Route>
-      <Route path={`${nftsBaseUrl}/profile/:accountAddress?`}>
+      <Route path='/profile/:accountAddress?'>
         <NftProfile />
       </Route>
-      <Route exact path={`${nftsBaseUrl}/profile`}>
-        <Redirect to={`${nftsBaseUrl}/profile/${account?.toLowerCase() || ''}`} />
+      <Route exact path='/profile'>
+        <Redirect to={`/profile/${account?.toLowerCase() || ''}`} />
       </Route>
     </>
   )

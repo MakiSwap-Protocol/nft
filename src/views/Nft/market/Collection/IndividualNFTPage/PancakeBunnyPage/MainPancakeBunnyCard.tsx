@@ -6,7 +6,6 @@ import { NftToken } from 'state/nftMarket/types'
 // import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import BuyModal from '../../../components/BuySellModals/BuyModal'
 import SellModal from '../../../components/BuySellModals/SellModal'
-import { nftsBaseUrl } from '../../../constants'
 import { RoundedImage, Container, CollectionLink } from '../shared/styles'
 
 interface MainPancakeBunnyCardProps {
@@ -59,7 +58,7 @@ const MainPancakeBunnyCard: React.FC<MainPancakeBunnyCardProps> = ({
         <Container flexDirection={['column-reverse', null, 'row']}>
           <Flex flex="2">
             <Box>
-              <CollectionLink to={`${nftsBaseUrl}/collections/${nftToDisplay.collectionAddress}`}>
+              <CollectionLink to={`/collections/${nftToDisplay.collectionAddress}`}>
                 {nftToDisplay.collectionName}
               </CollectionLink>
               <Text fontSize="40px" bold mt="12px">

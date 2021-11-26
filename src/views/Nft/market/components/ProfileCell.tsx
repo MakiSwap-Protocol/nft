@@ -5,7 +5,6 @@ import truncateHash from 'utils/truncateHash'
 // import { useGetProfileAvatar } from 'state/profile/hooks'
 import { ProfileAvatarFetchStatus } from 'state/types'
 import { Link } from 'react-router-dom'
-import { nftsBaseUrl } from '../constants'
 
 const Avatar = styled.img`
   margin-right: 4px;
@@ -41,7 +40,7 @@ const ProfileCell: React.FC<{ accountAddress: string }> = ({ accountAddress }) =
   // }
 
   return (
-    <Link to={`${nftsBaseUrl}/profile/${accountAddress}`}>
+    <Link to={`/profile/${accountAddress}`}>
       <StyledFlex>
         {/* {sellerProfilePicComponent} */}
         <Box display="inline">
