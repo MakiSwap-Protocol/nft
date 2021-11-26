@@ -25,6 +25,18 @@ const SORT_FIELD = {
   supply: 'totalSupply',
 }
 
+const StyledCard = styled(Card)`
+  padding: 20px 32px;
+`
+
+const StyledTable = styled.table`
+  width: 100%;
+  & th, & td {
+    padding: 8px 0;
+    vertical-align: middle;
+  }
+`
+
 export const PageButtons = styled.div`
   width: 100%;
   display: flex;
@@ -99,8 +111,8 @@ const Collectible = () => {
         </Heading>
       </PageHeader>
       <Page>
-        <Card>
-          <table>
+        <StyledCard>
+          <StyledTable>
             <thead>
               <tr>
                 <th style={{ textAlign: 'left' }}>{t('Collection')}</th>
@@ -156,7 +168,7 @@ const Collectible = () => {
                 )
               })}
             </tbody>
-          </table>
+          </StyledTable>
           <PageButtons>
             <Arrow
               onClick={() => {
@@ -176,7 +188,7 @@ const Collectible = () => {
               <ArrowForwardIcon color={page === maxPage ? 'textDisabled' : 'primary'} />
             </Arrow>
           </PageButtons>
-        </Card>
+        </StyledCard>
       </Page>
     </>
   )
