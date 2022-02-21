@@ -11,10 +11,22 @@ import GridPlaceholder from '../components/GridPlaceholder'
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr repeat(2, 1fr) repeat(2, 1fr) repeat(4, 1fr);
+  grid-template-columns: 1fr;
   grid-template-rows: repeat(4, auto);
   grid-row-gap: 24px;
   grid-column-gap: 16px;
+
+  ${({ theme }) => theme.mediaQueries.xs} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `
 
 /**
@@ -69,6 +81,7 @@ const Newest: React.FC = () => {
               !isPBCollection && nft.marketData?.isTradable ? parseFloat(nft.marketData.currentAskPrice) : undefined
             return (
               <CollectibleLinkCard
+                data-test="newest-nft-card"
                 key={nft.collectionAddress + nft.tokenId}
                 nft={nft}
                 currentAskPrice={currentAskPrice}

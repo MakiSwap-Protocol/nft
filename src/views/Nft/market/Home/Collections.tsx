@@ -1,40 +1,47 @@
 import React from 'react'
 import styled from 'styled-components'
-import orderBy from 'lodash/orderBy'
 import { Button, ChevronRightIcon, Flex, Heading, Text } from 'maki-toolkit'
 import { Link } from 'react-router-dom'
-import { useGetCollections } from 'state/nftMarket/hooks'
+import { Collection } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'
 import { HotCollectionCard } from '../components/CollectibleCard'
 import { BNBAmountLabel } from '../components/CollectibleCard/styles'
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr repeat(2, 1fr) repeat(3, 1fr);
+  grid-template-columns: 1fr;
   grid-template-rows: repeat(4, auto);
   grid-gap: 16px;
   margin-bottom: 64px;
+  ${({ theme }) => theme.mediaQueries.xs} {
+    grid-template-columns: 1fr;
+  }
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  ${({ theme }) => theme.mediaQueries.md} {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 
-const Collections = () => {
+const Collections: React.FC<{ title: string; testId: string; collections: Collection[] }> = ({
+  title,
+  testId,
+  collections,
+}) => {
   const { t } = useTranslation()
-  const collections = useGetCollections()
-
-  const orderedCollections = orderBy(
-    collections,
-    (collection) => (collection.totalVolumeBNB ? parseFloat(collection.totalVolumeBNB) : 0),
-    'desc',
-  )
 
   return (
     <>
       <Flex alignItems="center" justifyContent="space-between" mb="32px">
-        <Heading as="h3" scale="lg">
-          {t('Hot Collections')}
+        <Heading as="h3" scale="lg" data-test={testId}>
+          {title}
         </Heading>
         <Button
           as={Link}
-          to='/collections/'
+          to="/collections/"
           variant="secondary"
           scale="sm"
           endIcon={<ChevronRightIcon color="primary" width="24px" />}
@@ -43,7 +50,7 @@ const Collections = () => {
         </Button>
       </Flex>
       <Grid>
-        {orderedCollections.slice(0, 5).map((collection) => {
+        {collections.slice(0, 6).map((collection) => {
           return (
             <HotCollectionCard
               key={collection.address}
@@ -61,15 +68,6 @@ const Collections = () => {
             </HotCollectionCard>
           )
         })}
-        <HotCollectionCard
-          disabled
-          bgSrc="/images/collections/no-collection-banner-sm.png"
-          collectionName={t('Coming Soon')}
-        >
-          <Text color="textDisabled" fontSize="12px">
-            {t('More Collections are on their way!')}
-          </Text>
-        </HotCollectionCard>
       </Grid>
     </>
   )

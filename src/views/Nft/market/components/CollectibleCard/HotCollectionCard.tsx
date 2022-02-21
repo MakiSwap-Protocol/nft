@@ -41,6 +41,15 @@ const StyledHotCollectionCard = styled(Card)<{ disabled?: boolean }>`
   }
 `
 
+const InnerStyledHotCollectionCard = styled.div`
+  width: calc(100% - 1px);
+  height: calc(100% - 3px);
+  margin-top: 1px;
+  overflow: inherit;
+  background: #FFFFFF;
+  border-radius: 24px;
+`
+
 const StyledImage = styled(Image)`
   img {
     border-radius: 4px;
@@ -76,8 +85,10 @@ const HotCollectionCard: React.FC<HotCollectionCardProps> = ({
   )
 
   return (
-    <StyledHotCollectionCard disabled={disabled}>
-      {url ? <Link to={url}>{renderBody()}</Link> : <div style={{ cursor: 'default' }}>{renderBody()}</div>}
+    <StyledHotCollectionCard disabled={disabled} data-test="hot-collection-card">
+      <InnerStyledHotCollectionCard>
+        {url ? <Link to={url}>{renderBody()}</Link> : <div style={{ cursor: 'default' }}>{renderBody()}</div>}
+      </InnerStyledHotCollectionCard>
     </StyledHotCollectionCard>
   )
 }

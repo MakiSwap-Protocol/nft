@@ -6,7 +6,10 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import PageHeader from 'components/PageHeader'
 import SectionsWithFoldableText from 'components/FoldableSection/SectionsWithFoldableText'
+import PageSection from 'components/PageSection'
+import { useGetCollections } from 'state/nftMarket/hooks'
 import useTheme from 'hooks/useTheme'
+import { orderBy } from 'lodash'
 import SearchBar from '../components/SearchBar'
 import Collections from './Collections'
 import Newest from './Newest'
@@ -16,9 +19,14 @@ const Gradient = styled(Box)`
   background: ${({ theme }) => theme.colors.gradients.cardHeader};
 `
 
-const PageSection = styled.div`
-  padding: 20px 32px;
+const StyledPageHeader = styled(PageHeader)`
+  margin-bottom: -40px;
+  padding-bottom: 40px;
 `
+
+// const PageSection = styled.div`
+//   padding: 20px 32px;
+// `
 
 const StyledHeaderInner = styled(Flex)`
   flex-direction: column;
@@ -49,10 +57,23 @@ const Home = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { theme } = useTheme()
+  const collections = useGetCollections()
+
+  const hotCollections = orderBy(
+    collections,
+    (collection) => (collection.totalVolumeBNB ? parseFloat(collection.totalVolumeBNB) : 0),
+    'desc',
+  )
+
+  const newestCollections = orderBy(
+    collections,
+    (collection) => (collection.createdAt ? Date.parse(collection.createdAt) : 0),
+    'desc',
+  )
 
   return (
     <>
-      <PageHeader>
+      <StyledPageHeader>
         <StyledHeaderInner>
           <div>
             <Heading as="h1" scale="xxl" color="secondary" mb="24px">
@@ -69,9 +90,26 @@ const Home = () => {
           </div>
           <SearchBar />
         </StyledHeaderInner>
-      </PageHeader>
-      <PageSection>
-        <Collections />
+      </StyledPageHeader>
+      <PageSection
+        innerProps={{ style: { margin: '0', width: '100%' } }}
+        background={theme.colors.background}
+        index={1}
+        concaveDivider
+        dividerPosition="top"
+      >
+        <Collections
+          key="newest-collections"
+          title={t('Newest Collections')}
+          testId="nfts-newest-collections"
+          collections={newestCollections}
+        />
+        <Collections
+          key="hot-collections"
+          title={t('Hot Collections')}
+          testId="nfts-hot-collections"
+          collections={hotCollections}
+        />
         <Newest />
       </PageSection>
       <Gradient p="64px 0">
