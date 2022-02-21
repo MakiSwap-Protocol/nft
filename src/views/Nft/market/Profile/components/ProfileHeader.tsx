@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { Flex, IconButton, Link, Button, useModal } from 'maki-toolkit'
+import { Flex, IconButton, Link, Button, useModal } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { getEtherscanLink } from 'utils'
 import { formatNumber } from 'utils/formatBalance'

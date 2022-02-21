@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'maki-toolkit'
+import { AutoRenewIcon, Button, Flex, InjectedModalProps, Text } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { useMaki } from 'hooks/useContract'
 import useToast from 'hooks/useToast'

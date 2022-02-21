@@ -1,5 +1,5 @@
 import React from 'react'
-import { ModalProvider } from 'maki-toolkit'
+import { ModalProvider } from 'maki-toolkit-v3'
 import { Web3ReactProvider } from '@web3-react/core'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'

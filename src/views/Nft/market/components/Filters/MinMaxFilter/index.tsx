@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, BoxProps, Button } from 'maki-toolkit'
+import { Box, BoxProps, Button } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import FilterFooter from '../FilterFooter'
 

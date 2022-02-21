@@ -1,6 +1,6 @@
 import React, { lazy } from 'react'
 import { Redirect, Router, Route, Switch } from 'react-router-dom'
-import { ResetCSS } from 'maki-toolkit'
+import { ResetCSS } from 'maki-toolkit-v3'
 import BigNumber from 'bignumber.js'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { usePollCoreFarmData, usePollBlockNumber } from 'state/hooks' // removed: useFetchProfile

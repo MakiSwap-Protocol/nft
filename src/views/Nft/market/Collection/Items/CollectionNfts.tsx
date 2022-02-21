@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import uniqBy from 'lodash/uniqBy'
-import { AutoRenewIcon, Button, Flex, Text } from 'maki-toolkit'
+import { AutoRenewIcon, Button, Flex, Text } from 'maki-toolkit-v3'
 import { useAppDispatch } from 'state'
 import {
   useGetNftFilterLoadingState,

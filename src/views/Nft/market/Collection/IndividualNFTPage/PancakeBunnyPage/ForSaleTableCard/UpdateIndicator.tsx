@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Flex, useTooltip } from 'maki-toolkit'
+import { Flex, useTooltip } from 'maki-toolkit-v3'
 import { useLoadingState } from 'state/nftMarket/hooks'
 import { useTranslation } from 'contexts/Localization'
 import CountdownCircle from './CountdownCircle'

@@ -70,6 +70,7 @@
     "maki-sdk": "^4.4.1",
     "maki-swap-periphery": "^3.3.0",
     "maki-toolkit": "^1.0.2",
+    "maki-toolkit-v3": "^1.0.8",
     "multicodec": "^3.1.0",
     "multihashes": "^4.0.2",
     "node-fetch": "^2.6.1",

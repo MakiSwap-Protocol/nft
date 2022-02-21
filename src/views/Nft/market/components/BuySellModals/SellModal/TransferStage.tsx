@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text, Button, Input, BinanceIcon, ErrorIcon } from 'maki-toolkit'
+import { Flex, Text, Button, Input, BinanceIcon, ErrorIcon } from 'maki-toolkit-v3'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import { NftToken } from 'state/nftMarket/types'

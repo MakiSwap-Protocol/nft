@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
-import { ButtonMenu, ButtonMenuItem } from 'maki-toolkit'
+import { ButtonMenu, ButtonMenuItem } from 'maki-toolkit-v3'
 
 const Load = keyframes`{
   0% {

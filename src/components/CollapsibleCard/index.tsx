@@ -8,7 +8,7 @@ import {
   IconButton,
   ChevronUpIcon,
   ChevronDownIcon,
-} from 'maki-toolkit'
+} from 'maki-toolkit-v3'
 
 interface CollapsibleCardProps extends CardProps {
   initialOpenState?: boolean

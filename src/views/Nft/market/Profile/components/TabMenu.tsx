@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'contexts/Localization'
 import { Link as RouterLink, useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { Flex } from 'maki-toolkit'
+import { Flex } from 'maki-toolkit-v3'
 
 const Tab = styled.button<{ $active: boolean }>`
   display: inline-flex;

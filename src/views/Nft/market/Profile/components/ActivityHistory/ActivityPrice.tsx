@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, BinanceIcon, Text } from 'maki-toolkit'
+import { Flex, BinanceIcon, Text } from 'maki-toolkit-v3'
 import { multiplyPriceByAmount } from 'utils/prices'
 
 const ActivityPrice = ({ bnbBusdPrice, price }) => {

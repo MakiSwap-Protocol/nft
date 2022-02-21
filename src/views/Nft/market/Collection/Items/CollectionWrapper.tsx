@@ -1,6 +1,6 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
-import { Box } from 'maki-toolkit'
+import { Box } from 'maki-toolkit-v3'
 import isEmpty from 'lodash/isEmpty'
 import { Collection } from 'state/nftMarket/types'
 import { useGetNftFilters } from 'state/nftMarket/hooks'

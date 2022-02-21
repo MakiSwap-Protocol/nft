@@ -1,5 +1,5 @@
 import React from 'react'
-import { InjectedModalProps, Modal, Flex, Text, Button, Image, Link, BinanceIcon } from 'maki-toolkit'
+import { InjectedModalProps, Modal, Flex, Text, Button, Image, Link, BinanceIcon } from 'maki-toolkit-v3'
 import { Price } from 'maki-sdk'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'

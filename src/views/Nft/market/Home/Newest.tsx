@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Heading, Flex, Button, ChevronRightIcon } from 'maki-toolkit'
+import { Heading, Flex, Button, ChevronRightIcon } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { Link } from 'react-router-dom'
 import { NftToken } from 'state/nftMarket/types'

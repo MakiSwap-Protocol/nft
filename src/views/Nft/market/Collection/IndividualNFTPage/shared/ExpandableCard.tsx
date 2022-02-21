@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled, { keyframes, css } from 'styled-components'
-import { Text, Card, Box, ChevronUpIcon, ChevronDownIcon, IconButton } from 'maki-toolkit'
+import { Text, Card, Box, ChevronUpIcon, ChevronDownIcon, IconButton } from 'maki-toolkit-v3'
 import useTheme from 'hooks/useTheme'
 
 const expandAnimation = keyframes`

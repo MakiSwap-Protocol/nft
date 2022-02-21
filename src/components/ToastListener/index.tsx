@@ -1,5 +1,5 @@
 import React from 'react'
-import { ToastContainer } from 'maki-toolkit'
+import { ToastContainer } from 'maki-toolkit-v3'
 import useToast from 'hooks/useToast'
 // eslint-disable-next-line
 const ToastListener = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { BunnyPlaceholderIcon, Button, Flex, Text } from 'maki-toolkit'
+import { BunnyPlaceholderIcon, Button, Flex, Text } from 'maki-toolkit-v3'
 import {
   useGetNftFilterLoadingState,
   useGetNftOrdering,

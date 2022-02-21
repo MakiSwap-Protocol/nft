@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { Box, Flex, Text } from 'maki-toolkit'
+import { Box, Flex, Text } from 'maki-toolkit-v3'
 import { useAppDispatch } from 'state'
 import { fetchCollection } from 'state/nftMarket/reducer'
 import { useGetCollection } from 'state/nftMarket/hooks'

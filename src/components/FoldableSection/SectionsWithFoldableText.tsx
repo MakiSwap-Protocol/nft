@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Heading, Card, CardHeader, CardBody, Box, BoxProps } from 'maki-toolkit'
+import { Text, Heading, Card, CardHeader, CardBody, Box, BoxProps } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import FoldableText from './FoldableText'
 

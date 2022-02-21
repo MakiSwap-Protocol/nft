@@ -1,5 +1,5 @@
 import React from 'react'
-import { InjectedModalProps, Modal, Flex, Text, Button, useModal, Link, LinkExternal } from 'maki-toolkit'
+import { InjectedModalProps, Modal, Flex, Text, Button, useModal, Link, LinkExternal } from 'maki-toolkit-v3'
 import useTheme from 'hooks/useTheme'
 import styled from 'styled-components'
 import { NftToken } from 'state/nftMarket/types'

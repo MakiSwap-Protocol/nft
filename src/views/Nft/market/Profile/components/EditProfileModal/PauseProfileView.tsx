@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AutoRenewIcon, Button, Checkbox, Flex, InjectedModalProps, Text } from 'maki-toolkit'
+import { AutoRenewIcon, Button, Checkbox, Flex, InjectedModalProps, Text } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import useGetProfileCosts from 'views/Nft/market/Profile/hooks/useGetProfileCosts'
 import { useAppDispatch } from 'state'

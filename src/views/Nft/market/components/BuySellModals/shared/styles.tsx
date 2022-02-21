@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Flex, Image } from 'maki-toolkit'
+import { Flex, Image } from 'maki-toolkit-v3'
 
 export const RoundedImage = styled(Image)`
   border-radius: ${({ theme }) => theme.radii.small};

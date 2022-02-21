@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Button, Flex, Text, InjectedModalProps } from 'maki-toolkit'
+import { Button, Flex, Text, InjectedModalProps } from 'maki-toolkit-v3'
 import { formatBigNumber } from 'utils/formatBalance'
 import { getProfileAddress } from 'utils/addressHelpers'
 import { useMaki } from 'hooks/useContract'

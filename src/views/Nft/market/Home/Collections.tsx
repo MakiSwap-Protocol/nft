@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button, ChevronRightIcon, Flex, Heading, Text } from 'maki-toolkit'
+import { Button, ChevronRightIcon, Flex, Heading, Text } from 'maki-toolkit-v3'
 import { Link } from 'react-router-dom'
 import { Collection } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'

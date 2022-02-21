@@ -8,7 +8,7 @@ import {
   ArrowBackIcon,
   Text,
   ArrowForwardIcon,
-} from 'maki-toolkit'
+} from 'maki-toolkit-v3'
 import { BnbUsdtPairTokenIcon } from 'components/Svg'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'

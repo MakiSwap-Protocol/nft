@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Skeleton, useMatchBreakpoints } from 'maki-toolkit'
+import { Flex, Skeleton, useMatchBreakpoints } from 'maki-toolkit-v3'
 
 const GridItem = styled(Flex)`
   align-items: center;

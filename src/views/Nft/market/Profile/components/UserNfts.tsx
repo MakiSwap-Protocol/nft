@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useModal, Text, Flex } from 'maki-toolkit'
+import { useModal, Text, Flex } from 'maki-toolkit-v3'
 import { useUserNfts } from 'state/nftMarket/hooks'
 import { NftLocation, UserNftInitializationState, NftToken } from 'state/nftMarket/types'
 import { useTranslation } from 'contexts/Localization'

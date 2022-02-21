@@ -1,7 +1,7 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import { Flex, Text, Button, ButtonMenu, ButtonMenuItem, Link } from 'maki-toolkit'
+import { Flex, Text, Button, ButtonMenu, ButtonMenuItem, Link } from 'maki-toolkit-v3'
 import { FetchStatus } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import { BASE_URL } from 'config'

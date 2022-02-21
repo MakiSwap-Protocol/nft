@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Image, Text } from 'maki-toolkit'
+import { Flex, Image, Text } from 'maki-toolkit-v3'
 
 export const StyledSortButton = styled.button`
   border: none;

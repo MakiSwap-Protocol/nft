@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { Box, Flex, Image } from 'maki-toolkit'
+import { Box, Flex, Image } from 'maki-toolkit-v3'
 
 const Grid = styled.div`
   display: grid;

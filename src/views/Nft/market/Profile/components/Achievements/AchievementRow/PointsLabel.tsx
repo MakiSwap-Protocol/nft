@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, FlexProps, PrizeIcon, Text } from 'maki-toolkit'
+import { Flex, FlexProps, PrizeIcon, Text } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 
 interface PointsLabelProps extends FlexProps {

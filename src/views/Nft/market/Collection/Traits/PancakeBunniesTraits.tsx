@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Skeleton, Flex, ArrowDownIcon } from 'maki-toolkit'
+import { Skeleton, Flex, ArrowDownIcon } from 'maki-toolkit-v3'
 import { ArrowUpIcon } from 'components/Svg'
 import { useHistory } from 'react-router'
 import times from 'lodash/times'

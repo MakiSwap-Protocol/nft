@@ -9929,7 +9929,7 @@ eslint@^7.11.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-eslint@^7.2.0:
+eslint@^7.20.0:
   version "7.32.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.32.0.tgz#c6d328a14be3fb08c8d1d21e12c02fdb7a2a812d"
   integrity sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==
@@ -15061,6 +15061,19 @@ maki-swap-periphery@^3.3.0:
     truffle-flattener "^1.5.0"
     truffle-hdwallet-provider "^1.0.17"
     truffle-plugin-verify "^0.4.0"
+
+maki-toolkit-v3@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/maki-toolkit-v3/-/maki-toolkit-v3-1.0.8.tgz#c2e805b3affb00b62ab8670227c7b594625bcda4"
+  integrity sha512-Ibcn5LNfk+I73G3CPXSvENJ0z0mK4vgZiPTePA5PmGs1ssBJISqTziGWFvuHYNw+afXCwjY14U5uTLh61+Ttfg==
+  dependencies:
+    "@popperjs/core" "^2.9.2"
+    "@types/lodash" "^4.14.162"
+    "@types/styled-system" "^5.1.10"
+    lodash "^4.17.20"
+    react-popper "^2.2.5"
+    react-transition-group "^4.4.1"
+    styled-system "^5.1.5"
 
 maki-toolkit@^1.0.2:
   version "1.0.2"

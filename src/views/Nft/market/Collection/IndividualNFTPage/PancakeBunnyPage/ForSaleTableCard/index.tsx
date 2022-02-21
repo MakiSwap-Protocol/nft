@@ -10,7 +10,7 @@ import {
   ArrowDownIcon,
   Button,
   Spinner,
-} from 'maki-toolkit'
+} from 'maki-toolkit-v3'
 import { ArrowUpIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'

@@ -1,4 +1,4 @@
-import { Toast } from 'maki-toolkit'
+import { Toast } from 'maki-toolkit-v3'
 
 type ToastSignature = (title: Toast['title'], description?: Toast['description']) => void
 

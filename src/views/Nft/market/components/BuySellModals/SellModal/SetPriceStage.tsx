@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { Flex, Box, Text, Button, BinanceIcon, ErrorIcon, useTooltip } from 'maki-toolkit'
+import { Flex, Box, Text, Button, BinanceIcon, ErrorIcon, useTooltip } from 'maki-toolkit-v3'
 import { multiplyPriceByAmount } from 'utils/prices'
 // import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import { useTranslation } from 'contexts/Localization'

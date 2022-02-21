@@ -1,4 +1,4 @@
-import { Card, CardBody, Flex, Heading, Image, ProfileAvatar } from 'maki-toolkit'
+import { Card, CardBody, Flex, Heading, Image, ProfileAvatar } from 'maki-toolkit-v3'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'

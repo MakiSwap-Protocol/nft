@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ButtonProps } from 'maki-toolkit'
+import { Button, ButtonProps } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { useAppDispatch } from 'state'
 import { removeAllFilters } from 'state/nftMarket/reducer'

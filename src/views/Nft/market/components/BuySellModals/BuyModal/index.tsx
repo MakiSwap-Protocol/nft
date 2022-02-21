@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { InjectedModalProps } from 'maki-toolkit'
+import { InjectedModalProps } from 'maki-toolkit-v3'
 import { ethers } from 'ethers'
 import useTheme from 'hooks/useTheme'
 import { useTranslation } from 'contexts/Localization'

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Modal, Flex, Text, BinanceIcon, Skeleton } from 'maki-toolkit'
+import { Modal, Flex, Text, BinanceIcon, Skeleton } from 'maki-toolkit-v3'
 // import { useBNBBusdPrice } from 'hooks/useBUSDPrice'
 import { multiplyPriceByAmount } from 'utils/prices'
 import { BuyingStage } from './types'

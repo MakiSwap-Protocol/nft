@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Flex, Text, IconButton, Link, OpenNewIcon, useMatchBreakpoints, useModal } from 'maki-toolkit'
+import { Image, Flex, Text, IconButton, Link, OpenNewIcon, useMatchBreakpoints, useModal } from 'maki-toolkit-v3'
 import { NftToken } from 'state/nftMarket/types'
 import { Price } from 'maki-sdk'
 import styled from 'styled-components'

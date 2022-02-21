@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Card, Text, useModal, Box, BinanceIcon, Skeleton, Button } from 'maki-toolkit'
+import { Flex, Card, Text, useModal, Box, BinanceIcon, Skeleton, Button } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
 import { NftToken } from 'state/nftMarket/types'

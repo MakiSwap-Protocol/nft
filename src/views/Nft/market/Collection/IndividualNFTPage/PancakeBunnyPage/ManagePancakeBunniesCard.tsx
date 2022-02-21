@@ -10,7 +10,7 @@ import {
   BinanceIcon,
   Skeleton,
   useModal,
-} from 'maki-toolkit'
+} from 'maki-toolkit-v3'
 import { WalletFilledIcon } from 'components/Svg'
 import { useWeb3React } from '@web3-react/core'
 import { useUserNfts } from 'state/nftMarket/hooks'

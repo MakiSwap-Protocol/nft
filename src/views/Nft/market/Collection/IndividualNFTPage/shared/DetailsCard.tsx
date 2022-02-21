@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Flex, Text, SearchIcon, Link } from 'maki-toolkit'
+import { Box, Flex, Text, SearchIcon, Link } from 'maki-toolkit-v3'
 import { getEtherscanLink } from 'utils'
 import { formatNumber } from 'utils/formatBalance'
 import uriToHttp from 'utils/uriToHttp'

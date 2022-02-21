@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 // import { useAchievementsForAddress, useProfileForAddress } from 'state/profile/hooks'
-import { Box } from 'maki-toolkit'
+import { Box } from 'maki-toolkit-v3'
 import Page from 'components/Layout/Page'
 import { Route, useParams } from 'react-router'
 import MarketPageHeader from '../components/MarketPageHeader'

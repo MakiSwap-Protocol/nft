@@ -10,7 +10,7 @@ import {
   IconButton,
   CloseIcon,
   ArrowDownIcon,
-} from 'maki-toolkit'
+} from 'maki-toolkit-v3'
 import { ArrowUpIcon } from 'components/Svg'
 import orderBy from 'lodash/orderBy'
 import { useAppDispatch } from 'state'

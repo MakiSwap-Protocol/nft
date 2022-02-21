@@ -1,5 +1,5 @@
 import React from 'react'
-import { InjectedModalProps, Modal } from 'maki-toolkit'
+import { InjectedModalProps, Modal } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { ContextApi } from 'contexts/Localization/types'
 import useEditProfile, { Views } from './reducer'

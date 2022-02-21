@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Text } from 'maki-toolkit'
+import { Box, Flex, Text } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { NftAttribute } from 'state/nftMarket/types'
 import ExpandableCard from './ExpandableCard'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, LinkExternal } from 'maki-toolkit'
+import { Flex, Text, Button, LinkExternal } from 'maki-toolkit-v3'
 import { ArrowUpIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'
 import { getEtherscanLink } from 'utils'

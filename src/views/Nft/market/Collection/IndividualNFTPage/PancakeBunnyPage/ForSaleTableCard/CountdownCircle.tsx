@@ -1,4 +1,4 @@
-import { Spinner, Text } from 'maki-toolkit'
+import { Spinner, Text } from 'maki-toolkit-v3'
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 

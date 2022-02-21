@@ -8,7 +8,7 @@ import {
   FlexProps,
   Text,
   Skeleton,
-} from 'maki-toolkit'
+} from 'maki-toolkit-v3'
 import { WalletFilledIcon } from 'components/Svg'
 import { Price } from 'maki-sdk'
 import { useTranslation } from 'contexts/Localization'

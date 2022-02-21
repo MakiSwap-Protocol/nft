@@ -1,5 +1,5 @@
 import React from 'react'
-import { BackgroundImage, BoxProps } from 'maki-toolkit'
+import { BackgroundImage, BoxProps } from 'maki-toolkit-v3'
 import PlaceholderImage from './PlaceholderImage'
 
 interface PreviewImageProps extends BoxProps {

@@ -1,4 +1,4 @@
-import { MenuEntry } from 'maki-toolkit'
+import { MenuEntry } from 'maki-toolkit-v3'
 import { ContextApi } from 'contexts/Localization/types'
 
 const config: (t: ContextApi['t']) => MenuEntry[] = (t) => [

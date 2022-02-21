@@ -1,6 +1,6 @@
 import React from 'react'
 import { NftLocation } from 'state/nftMarket/types'
-import { Text, Flex } from 'maki-toolkit'
+import { Text, Flex } from 'maki-toolkit-v3'
 import { WalletFilledIcon } from 'components/Svg'
 import { useTranslation } from 'contexts/Localization'
 

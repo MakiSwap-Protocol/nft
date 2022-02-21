@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, BoxProps, Skeleton } from 'maki-toolkit'
+import { Box, BoxProps, Skeleton } from 'maki-toolkit-v3'
 import times from 'lodash/times'
 
 const Grid = styled.div`

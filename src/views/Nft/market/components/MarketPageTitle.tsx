@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Box, Heading } from 'maki-toolkit'
+import { Box, Heading } from 'maki-toolkit-v3'
 
 const Grid = styled.div`
   display: grid;

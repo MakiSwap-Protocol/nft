@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Spinner } from 'maki-toolkit'
+import { Spinner } from 'maki-toolkit-v3'
 import Page from './Layout/Page'
 
 const Wrapper = styled(Page)`

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Flex, Box, FlexProps } from 'maki-toolkit'
+import { Flex, Box, FlexProps } from 'maki-toolkit-v3'
 import BannerImage from './BannerImage'
 
 interface BannerHeaderProps extends FlexProps {

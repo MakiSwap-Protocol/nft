@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, Button, Heading, Flex } from 'maki-toolkit'
+import { Box, Button, Heading, Flex } from 'maki-toolkit-v3'
 import { useWeb3React } from '@web3-react/core'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'

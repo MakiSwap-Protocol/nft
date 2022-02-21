@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { AutoRenewIcon, Button, Flex } from 'maki-toolkit'
+import { AutoRenewIcon, Button, Flex } from 'maki-toolkit-v3'
 import { Achievement } from 'state/types'
 import useToast from 'hooks/useToast'
 import { useTranslation } from 'contexts/Localization'

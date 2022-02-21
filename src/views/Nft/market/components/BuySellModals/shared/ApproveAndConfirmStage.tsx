@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Button, Spinner } from 'maki-toolkit'
+import { Flex, Text, Button, Spinner } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { StepIndicator } from './styles'
 

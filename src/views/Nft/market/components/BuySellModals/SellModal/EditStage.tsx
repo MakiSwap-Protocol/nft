@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Text, Button, Link, LinkExternal, BinanceIcon } from 'maki-toolkit'
+import { Flex, Text, Button, Link, LinkExternal, BinanceIcon } from 'maki-toolkit-v3'
 import { useTranslation } from 'contexts/Localization'
 import { pancakeBunniesAddress } from 'views/Nft/market/constants'
 import { NftToken } from 'state/nftMarket/types'
